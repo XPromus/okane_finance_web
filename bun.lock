@@ -3,6 +3,10 @@
   "workspaces": {
     "": {
       "name": "okane-finance-web",
+      "dependencies": {
+        "@skeletonlabs/skeleton": "^2.11.0",
+        "@skeletonlabs/tw-plugin": "^0.4.1",
+      },
       "devDependencies": {
         "@sveltejs/adapter-auto": "^4.0.0",
         "@sveltejs/kit": "^2.16.0",
@@ -130,6 +134,10 @@
     "@rollup/rollup-win32-ia32-msvc": ["@rollup/rollup-win32-ia32-msvc@4.34.4", "", { "os": "win32", "cpu": "ia32" }, "sha512-5g7E2PHNK2uvoD5bASBD9aelm44nf1w4I5FEI7MPHLWcCSrR8JragXZWgKPXk5i2FU3JFfa6CGZLw2RrGBHs2Q=="],
 
     "@rollup/rollup-win32-x64-msvc": ["@rollup/rollup-win32-x64-msvc@4.34.4", "", { "os": "win32", "cpu": "x64" }, "sha512-p0scwGkR4kZ242xLPBuhSckrJ734frz6v9xZzD+kHVYRAkSUmdSLCIJRfql6H5//aF8Q10K+i7q8DiPfZp0b7A=="],
+
+    "@skeletonlabs/skeleton": ["@skeletonlabs/skeleton@2.11.0", "", { "dependencies": { "esm-env": "1.0.0" }, "peerDependencies": { "svelte": "^3.56.0 || ^4.0.0 || ^5.0.0" } }, "sha512-ORMZYACsIlfKyBx2ZIHBy7zE877t99fxU7LzcY1dveVmn2//+OeqnbQb5RryNILsMR62Tuu1VLnCu01/ByHlbQ=="],
+
+    "@skeletonlabs/tw-plugin": ["@skeletonlabs/tw-plugin@0.4.1", "", { "peerDependencies": { "tailwindcss": ">=3.0.0" } }, "sha512-crrC8BGKis0GNTp7V2HF6mk1ECLUvAxgTTV26LMgt/rV3U6Xd7N7dL5qIL8fE4MTHvpKa1SBsdqsnMbEvATeEg=="],
 
     "@sveltejs/adapter-auto": ["@sveltejs/adapter-auto@4.0.0", "", { "dependencies": { "import-meta-resolve": "^4.1.0" }, "peerDependencies": { "@sveltejs/kit": "^2.0.0" } }, "sha512-kmuYSQdD2AwThymQF0haQhM8rE5rhutQXG4LNbnbShwhMO4qQGnKaaTy+88DuNSuoQDi58+thpq8XpHc1+oEKQ=="],
 
@@ -406,6 +414,8 @@
     "yaml": ["yaml@2.7.0", "", { "bin": { "yaml": "bin.mjs" } }, "sha512-+hSoy/QHluxmC9kCIJyL/uyFmLmc+e5CFR5Wa+bpIhIj85LVb9ZH2nVnqrHoSvKogwODv0ClqZkmiSSaIH5LTA=="],
 
     "zimmerframe": ["zimmerframe@1.1.2", "", {}, "sha512-rAbqEGa8ovJy4pyBxZM70hg4pE6gDgaQ0Sl9M3enG3I0d6H4XSAM3GeNGLKnsBpuijUow064sf7ww1nutC5/3w=="],
+
+    "@skeletonlabs/skeleton/esm-env": ["esm-env@1.0.0", "", {}, "sha512-Cf6VksWPsTuW01vU9Mk/3vRue91Zevka5SjyNf3nEpokFRuqt/KjUQoGAwq9qMmhpLTHmXzSIrFRw8zxWzmFBA=="],
 
     "fast-glob/glob-parent": ["glob-parent@5.1.2", "", { "dependencies": { "is-glob": "^4.0.1" } }, "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow=="],
 
