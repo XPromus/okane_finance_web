@@ -17,9 +17,10 @@ const config = {
 	plugins: [
 		// 4. Append the Skeleton plugin (after other plugins)
 		skeleton({
-      themes: { preset: [ "skeleton" ] }
+      themes: { preset: [ "hamlindigo" ] }
     })
-	]
+	],
+	darkMode: "selector"
 } satisfies Config;
 
 export default config;

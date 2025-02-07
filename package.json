@@ -24,6 +24,8 @@
 	},
 	"dependencies": {
 		"@skeletonlabs/skeleton": "^2.11.0",
-		"@skeletonlabs/tw-plugin": "^0.4.1"
+		"@skeletonlabs/tw-plugin": "^0.4.1",
+		"@types/node": "^22.13.1",
+		"eva-icons": "^1.1.3"
 	}
 }

@@ -1,13 +1,48 @@
 <script lang="ts">
-  	import { AppRail, AppRailAnchor, AppRailTile } from '@skeletonlabs/skeleton';
+  	import { AppRail, AppRailAnchor, AppRailTile, LightSwitch, Tab, TabGroup } from '@skeletonlabs/skeleton';
+	import { goto } from '$app/navigation';
 	import '../app.css';
+
+	type TabData = {
+		url: string,
+		text: string
+	}
+
+	const tabData: TabData[] = [
+		{url: "/owners", text: "Owners"},
+		{url: "/accounts", text: "Accounts"},
+		{url: "/transactions", text: "Transactions"},
+		{url: "/payees", text: "Payees"},
+		{url: "/categories", text: "Categories"},
+		{url: "/tags", text: "Tags"}
+	]
+
 	let { children } = $props();
 	let currentTile: number = $state(0);
+	let tabSet: number = $state(0);
+
+	$effect(() => {
+		goto(tabData[tabSet].url)
+	});
 </script>
 
 <div class="w-screen h-screen flex flex-col">
-	<div class="bg-slate-400 p-2">
-		<span class="h3">Okane</span>
+	<div class="p-2 flex flex-row">
+		<div class="flex flex-row">
+			<span class="h3">Okane</span>
+		</div>
+		<div class="flex flex-row grow">
+			<TabGroup>
+				{#each tabData as data, i }
+					<Tab bind:group={tabSet} name="{data.text}Tab" value={i}>
+						<span>{data.text}</span>
+					</Tab>
+				{/each}
+			</TabGroup>
+		</div>
+		<div class="flex flex-row">
+			<LightSwitch />
+		</div>
 	</div>
 	<div class="flex flex-row w-full h-full">
 		<div>
