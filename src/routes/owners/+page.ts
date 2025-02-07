@@ -1,4 +1,4 @@
-import type { Owner, OwnerGetResponseReturn } from "$lib/types/Owner";
+import type { Owner, OwnerGetResponseReturn } from "$lib/types/api/Owner";
 import type { PageLoad } from "./$types"
 
 export const load: PageLoad = async ({ params }) => {
