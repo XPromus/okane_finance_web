@@ -14,7 +14,6 @@
     $effect(() =>  {
         console.log(currentTile.currentTile)
     })
-
 </script>
 
 <div class="w-full h-full p-5 flex flex-row space-x-3">
