@@ -1,0 +1,9 @@
+import type { UUID } from "crypto"
+import type { Category } from "./Category"
+
+export type Budget = {
+    id: UUID | undefined,
+    budgetName: string,
+    maxValue: number,
+    targetCategories: Category[]
+}

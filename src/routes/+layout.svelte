@@ -1,8 +1,8 @@
 <script lang="ts">
   	import { LightSwitch, TabAnchor, TabGroup } from '@skeletonlabs/skeleton';
-	import { goto } from '$app/navigation';
 	import '../app.css';
   	import { page } from '$app/stores';
+  	import Icon from '@iconify/svelte';
 
 	type TabData = {
 		url: string,
@@ -20,21 +20,18 @@
 	]
 
 	let { children } = $props();
-	
-	let tabSet: number = $state(0);
-
-	$effect(() => {
-		goto(tabData[tabSet].url)
-	});
 </script>
 
 <div class="w-screen h-screen flex flex-col">
-	<div class="p-2 flex flex-row">
-		<div class="flex flex-row justify-start content-center">
-			<span class="h3">Okane</span>
+	<div class="p-2 flex flex-row px-5">
+		<div class="flex flex-row justify-start content-center basis-1/5">
+			<!--<span class="h3">Okane</span>-->
 		</div>
-		<div class="flex flex-row grow justify-center content-center">
+		<div class="flex flex-row grow justify-center content-center basis-3/5">
 			<TabGroup>
+				<TabAnchor href="/" selected={$page.url.pathname === "/"}>
+					<Icon icon="material-symbols:home" width=24 height=24 />
+				</TabAnchor>
 				{#each tabData as data, i }
 					<TabAnchor href={data.url} selected={$page.url.pathname === data.url}>
 						<span>{data.text}</span>
@@ -42,12 +39,11 @@
 				{/each}
 			</TabGroup>
 		</div>
-		<div class="flex flex-row justify-end content-center">
+		<div class="flex flex-row justify-end content-center items-center basis-1/5">
 			<LightSwitch />
 		</div>
 	</div>
-	<div class="flex flex-row w-full h-full">
+	<div class="grow">
 		{@render children()}
 	</div>
 </div>
-
