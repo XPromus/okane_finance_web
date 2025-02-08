@@ -7,3 +7,8 @@ export type Budget = {
     maxValue: number,
     targetCategories: Category[]
 }
+
+export type BudgetDto = {
+    budgetName: string,
+    maxValue: number,
+}

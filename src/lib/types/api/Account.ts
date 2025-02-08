@@ -8,3 +8,7 @@ export type Account = {
     transactions: Transaction[],
     owner: Owner
 }
+
+export type AccountDto = {
+    accountName: string
+}

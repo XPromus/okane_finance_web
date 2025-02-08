@@ -1,5 +1,5 @@
 import { baseURL } from "$lib/config/consts"
-import type { Owner, OwnerDto, OwnerGetResponseReturn } from "$lib/types/api/Owner"
+import type { Owner, OwnerDto } from "$lib/types/api/Owner"
 
 export const getAllOwners = async (): Promise<Owner[]> => {
     const url = baseURL + "/owners"
@@ -8,6 +8,31 @@ export const getAllOwners = async (): Promise<Owner[]> => {
 		headers: {
 			"Content-Type": "application/json"
 		}
+	})
+	const owners: Owner[] = await response.json()
+	return owners
+}
+
+export const getOwners = async (
+    id: string | undefined,
+    firstName: string | undefined,
+    lastName: string | undefined,
+    birthday: Date | undefined,
+): Promise<Owner[]> => {
+    const params: Record<string, string | Date | undefined> = {
+        id: id,
+        firstName: firstName,
+        lastName: lastName,
+        birthday: birthday
+    }
+
+    const url = baseURL + "/owners" + "?" + params.toString()
+	const response = await fetch(url, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json"
+		},
+        
 	})
 	const owners: Owner[] = await response.json()
 	return owners
@@ -45,4 +70,17 @@ export const deleteOwner = async (id: string): Promise<boolean> => {
     });
 
     return response.ok
+}
+
+export const addAccounts = async (id: string, accounts: string[]): Promise<Owner> => {
+    const response = await fetch(baseURL + "/owners/" + id + "/accounts", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(accounts)
+    });
+
+    const responseData: Promise<Owner> = response.json()
+    return responseData;
 }
