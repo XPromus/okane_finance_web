@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { deleteOwner, putUpdateOwner } from "$lib/api/OwnerAPI";
+    import { deleteOwner, getAllOwners, putUpdateOwner } from "$lib/api/OwnerAPI";
     import type { Owner, OwnerDto } from "$lib/types/api/Owner";
     import Icon from "@iconify/svelte";
     import { Avatar, popup } from "@skeletonlabs/skeleton";
@@ -50,6 +50,7 @@
         }
 
         const updatedOwner: Owner = await putUpdateOwner(ownerToUpdate, currentOwnerId);
+        owners = await getAllOwners()
     }
 
     const onDeleteButtonClicked = async () => {
@@ -59,6 +60,7 @@
 
 <div class="basis-1/2">
     <div class="flex flex-col space-y-3">
+        <!--
         {#each mockOwners as owner }
             <button onclick={() => {alert("Owner")}} class="w-full flex flex-row space-x-5 card card-hover p-2">
                 <Avatar initials={getOwnerInitials(owner.firstName, owner.lastName)} background="bg-primary-500" width="w-10" />
@@ -72,6 +74,7 @@
                 {/if}
             </button>
         {/each}
+        -->
         {#each ownerTyped as owner}
             <button onclick={() => {onOwnerButtonClicked(owner)}} class="w-full flex flex-row space-x-5 card card-hover p-2">
                 <Avatar initials={getOwnerInitials(owner.firstName, owner.lastName)} background="bg-primary-500" width="w-10" />

@@ -25,11 +25,15 @@
         newOwnerLastName = "";
         newOwnerDate = new Date()
     }
+
+    const getNewOwnerInitials = (): string => {
+        return newOwnerFirstName[0] + newOwnerLastName[0]
+    }
 </script>
 
 <div class="card w-full h-full p-5 flex flex-col space-y-5">
     <div class="flex flex-row">
-        <Avatar initials="JD" background="bg-primary-500" width="w-32"/>
+        <Avatar initials={getNewOwnerInitials()} background="bg-primary-500" width="w-32"/>
         <div class="grow"></div>
         <div class="flex flex-col space-y-2 justify-center">
             <button type="button" class="btn variant-filled">

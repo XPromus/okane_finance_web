@@ -19,6 +19,11 @@
 		{url: "/tags", text: "Tags", icon: "material-symbols:person"}
 	]
 
+	const getTopLevelPath = (path: string): string => {
+		const splitPath = path.split("/")
+		return splitPath[1]
+	}
+
 	let { children } = $props();
 </script>
 
@@ -33,7 +38,7 @@
 					<Icon icon="material-symbols:home" width=24 height=24 />
 				</TabAnchor>
 				{#each tabData as data, i }
-					<TabAnchor href={data.url} selected={$page.url.pathname === data.url}>
+					<TabAnchor href={data.url} selected={getTopLevelPath($page.url.pathname) === getTopLevelPath(data.url)}>
 						<span>{data.text}</span>
 					</TabAnchor>
 				{/each}
