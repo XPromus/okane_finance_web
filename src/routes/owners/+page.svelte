@@ -22,7 +22,7 @@
     {:else if currentTile.currentTile == 1}
         <OwnerAddPage />
     {:else if currentTile.currentTile == 2}
-        <OwnerEditPage />
+        <OwnerEditPage owners={data.owners} />
     {:else if currentTile.currentTile == 3}
         <OwnerExportPage />
     {:else if currentTile.currentTile == 4}

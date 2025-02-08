@@ -2,7 +2,7 @@ import type { UUID } from "crypto"
 import type { Account } from "./Account"
 
 export type Owner = {
-    id: UUID | undefined,
+    id: UUID,
     firstName: string,
     lastName: string,
     birthday: Date | undefined,
@@ -16,5 +16,5 @@ export type OwnerGetResponseReturn = {
 export type OwnerDto = {
     firstName: string,
     lastName: string,
-    birthday: Date,
+    birthday: Date | undefined,
 }
