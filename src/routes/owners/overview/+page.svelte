@@ -6,5 +6,5 @@
 </script>
 
 <div class="w-full h-full p-5 flex flex-row space-x-3">
-    <OwnerOverviewPage />
+    <OwnerOverviewPage owners={data.owners}/>
 </div>
