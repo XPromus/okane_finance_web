@@ -34,17 +34,6 @@
 <div class="card w-full h-full p-5 flex flex-col space-y-5">
     <div class="flex flex-row">
         <Avatar initials={getNewOwnerInitials()} background="bg-primary-500" width="w-32"/>
-        <div class="grow"></div>
-        <div class="flex flex-col space-y-2 justify-center">
-            <button type="button" class="btn variant-filled">
-                <Icon icon="material-symbols:upload" width="24" height="24" />
-                <span>Upload Avatar</span>
-            </button>
-            <button type="button" class="btn variant-filled-error">
-                <Icon icon="material-symbols:hide-image-outline-rounded" width="24" height="24" />
-                <span>Clear Avatar</span>
-            </button>
-        </div>
     </div>
     <div class="flex flex-col space-y-5">
         <label class="label">
