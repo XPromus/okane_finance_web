@@ -27,6 +27,7 @@
 		"@iconify/svelte": "^4.2.0",
 		"@skeletonlabs/skeleton": "^2.11.0",
 		"@skeletonlabs/tw-plugin": "^0.4.1",
+		"@sveltejs/adapter-node": "^5.2.12",
 		"@tailwindcss/forms": "^0.5.10",
 		"@types/node": "^22.13.1",
 		"unplugin-icons": "^22.0.0"
