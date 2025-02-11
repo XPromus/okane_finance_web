@@ -18,7 +18,7 @@ const config = {
 		require('@tailwindcss/forms'),
 		// 4. Append the Skeleton plugin (after other plugins)
 		skeleton({
-			themes: { preset: [ "crimson", "modern", "skeleton" ] }
+			themes: { preset: [ "crimson", "modern", "skeleton", "wintry" ] }
 		})
 	],
 	darkMode: "selector"
