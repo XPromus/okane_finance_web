@@ -6,6 +6,7 @@ export type Account = {
     id: UUID | undefined,
     accountName: string,
     startingBalance: number,
+    institute: string,
     transactions: Transaction[],
     owner: Owner
 }
@@ -15,7 +16,9 @@ export type AccountGetResponseReturn = {
 }
 
 export type AccountDto = {
-    accountName: string
+    accountName: string,
+    startingBalance: number,
+    institute: string,
 }
 
 export type AccountReturnType = {

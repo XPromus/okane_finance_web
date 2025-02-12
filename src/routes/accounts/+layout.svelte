@@ -3,18 +3,21 @@
     import Icon from "@iconify/svelte";
     import type { CurrentTileType } from '$lib/types/context/AppRailCurrentTile';
     import { goto } from '$app/navigation';
+    import { setContext } from 'svelte';
 
     let currentTile: CurrentTileType = $state({ currentTile: 0 });
     let { children } = $props();
+
+    setContext("currentTile", currentTile)
 
     const onAppTileClicked = (url: string) => {
         goto(url)
     }
 </script>
 
-<div class="flex flex-row w-full h-full">
+<div class="flex flex-row w-full h-full space-x-5">
     <AppRail>
-        <AppRailTile on:click={() => onAppTileClicked("/accounts/overview")} bind:group={currentTile} name="tile-1" value={0} title="tile-1">
+        <AppRailTile on:click={() => onAppTileClicked("/accounts/overview")} bind:group={currentTile.currentTile} name="tile-1" value={0} title="tile-1">
             <svelte:fragment slot="lead">
                 <span class="flex justify-center w-full">
                     <Icon icon="material-symbols:view-headline-rounded" width="24" height="24" />
@@ -22,7 +25,7 @@
             </svelte:fragment>
             <span>Overview</span>
         </AppRailTile>
-        <AppRailTile on:click={() => onAppTileClicked("/accounts/add")} bind:group={currentTile} name="tile-2" value={1} title="tile-2">
+        <AppRailTile on:click={() => onAppTileClicked("/accounts/add")} bind:group={currentTile.currentTile} name="tile-2" value={1} title="tile-2">
             <svelte:fragment slot="lead">
                 <span class="flex justify-center w-full">
                     <Icon icon="material-symbols:add-2-rounded" width="24" height="24" />
@@ -30,7 +33,7 @@
             </svelte:fragment>
             <span>Add</span>
         </AppRailTile>
-        <AppRailTile on:click={() => onAppTileClicked("/accounts/edit")} bind:group={currentTile} name="tile-3" value={2} title="tile-3">
+        <AppRailTile on:click={() => onAppTileClicked("/accounts/edit")} bind:group={currentTile.currentTile} name="tile-3" value={2} title="tile-3">
             <svelte:fragment slot="lead">
                 <span class="flex justify-center w-full">
                     <Icon icon="material-symbols:person-edit-rounded" width="24" height="24" />
@@ -38,13 +41,13 @@
             </svelte:fragment>
             <span>Edit</span>
         </AppRailTile>
-        <AppRailTile on:click={() => onAppTileClicked("/accounts/export")} bind:group={currentTile} name="tile-3" value={3} title="tile-3">
+        <AppRailTile on:click={() => onAppTileClicked("/accounts/export")} bind:group={currentTile.currentTile} name="tile-3" value={3} title="tile-3">
             <span class="flex justify-center w-full">
                 <Icon icon="material-symbols:file-export-rounded" width="24" height="24" />
             </span>
             <span>Export</span>
         </AppRailTile>
-        <AppRailTile on:click={() => onAppTileClicked("/accounts/import")} bind:group={currentTile} name="tile-3" value={4} title="tile-3">
+        <AppRailTile on:click={() => onAppTileClicked("/accounts/import")} bind:group={currentTile.currentTile} name="tile-3" value={4} title="tile-3">
             <span class="flex justify-center w-full">
                 <Icon icon="material-symbols:database-upload-rounded" width="24" height="24" />
             </span>
