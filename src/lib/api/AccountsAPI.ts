@@ -9,8 +9,8 @@ export const getAllAccounts = async (): Promise<Account[]> => {
 			"Content-Type": "application/json"
 		}
 	})
-	const owners: Account[] = await response.json()
-	return owners
+	const accounts: Account[] = await response.json()
+	return accounts
 }
 
 export const getAccounts = async (

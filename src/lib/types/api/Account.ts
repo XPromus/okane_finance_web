@@ -9,6 +9,10 @@ export type Account = {
     owner: Owner
 }
 
+export type AccountGetResponseReturn = {
+    accounts: Account[]
+}
+
 export type AccountDto = {
     accountName: string
 }
