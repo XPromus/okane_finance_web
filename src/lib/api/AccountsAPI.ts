@@ -16,10 +16,12 @@ export const getAllAccounts = async (): Promise<Account[]> => {
 export const getAccounts = async (
     id: string | undefined,
     accountName: string | undefined,
+    startingBalance: number | undefined
 ): Promise<Account[]> => {
-    const params: Record<string, string | undefined> = {
+    const params: Record<string, string | number | undefined> = {
         id: id,
         accountName: accountName,
+        startingBalance: startingBalance
     }
 
     const url = baseURL + "/accounts" + "?" + params.toString()

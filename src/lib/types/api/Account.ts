@@ -5,6 +5,7 @@ import type { Owner } from "./Owner"
 export type Account = {
     id: UUID | undefined,
     accountName: string,
+    startingBalance: number,
     transactions: Transaction[],
     owner: Owner
 }
