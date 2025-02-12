@@ -12,3 +12,7 @@ export type Account = {
 export type AccountDto = {
     accountName: string
 }
+
+export type AccountReturnType = {
+    accounts: Account[]
+}
