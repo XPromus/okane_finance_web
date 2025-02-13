@@ -3,7 +3,7 @@ import type { Transaction } from "./Transaction"
 import type { Owner } from "./Owner"
 
 export type Account = {
-    id: UUID | undefined,
+    id: UUID,
     accountName: string,
     startingBalance: number,
     institute: string,
