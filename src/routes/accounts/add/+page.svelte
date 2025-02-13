@@ -25,10 +25,12 @@
         const accountToSave: AccountDto = {
             accountName: newAccountName,
             startingBalance: newAccountStartingBalance,
-            institute: newAccountInstitute
+            institute: newAccountInstitute,
+            ownerId: newAccountOwnerId
         };
 
         const newAccount = await postCreateAccount(accountToSave);
+        console.log(newAccount.id)
         resetInputFields();
     }
 
@@ -44,7 +46,7 @@
     </div>
     <div class="flex flex-col space-y-1">
         <p>Institute</p>
-        <input bind:value={newAccountName} class="input" title="Input (text)" type="text" placeholder="input text" />
+        <input bind:value={newAccountInstitute} class="input" title="Input (text)" type="text" placeholder="input text" />
     </div>
     <div class="flex flex-col space-y-1">
         <p>Starting Balance</p>

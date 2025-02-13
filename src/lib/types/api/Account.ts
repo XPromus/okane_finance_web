@@ -19,6 +19,7 @@ export type AccountDto = {
     accountName: string,
     startingBalance: number,
     institute: string,
+    ownerId: string,
 }
 
 export type AccountReturnType = {
