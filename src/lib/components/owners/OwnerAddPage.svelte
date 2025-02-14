@@ -57,7 +57,7 @@
             <input bind:value={newOwnerDate} class="input" type="date" placeholder="birthday" />
         </label>
     </div>
-    {#if completedValue !== 4}
+    {#if completedValue !== completedValueMax}
         <ProgressBar meter="variant-filled-error" track="variant-soft-error" value={completedValue} max={completedValueMax} />
     {:else}
         <ProgressBar meter="variant-filled-success" track="variant-soft-success" value={completedValue} max={completedValueMax} />
