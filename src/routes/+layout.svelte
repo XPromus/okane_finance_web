@@ -3,6 +3,7 @@
 	import '../app.css';
   	import { page } from '$app/stores';
   	import Icon from '@iconify/svelte';
+	import TitleBar from "$lib/components/TitleBar.svelte";
 
 	type TabData = {
 		url: string,
@@ -28,6 +29,7 @@
 </script>
 
 <div class="w-screen h-screen flex flex-col">
+	<!--<TitleBar />-->
 	<div class="p-2 flex flex-row px-5">
 		<div class="flex flex-row justify-start content-center basis-1/5">
 			<!--<span class="h3">Okane</span>-->

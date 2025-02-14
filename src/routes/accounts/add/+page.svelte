@@ -3,6 +3,9 @@
     import type { PageData } from './$types';
     import type { AccountDto } from "$lib/types/api/Account";
     import { postCreateAccount } from "$lib/api/AccountsAPI";
+    import {ProgressBar} from "@skeletonlabs/skeleton";
+    import ErrorChip from "$lib/components/ErrorChip.svelte";
+    import SuccessChip from "$lib/components/SuccessChip.svelte";
     let { data }: { data: PageData } = $props();
 
     let newAccountName: string = $state("");
@@ -10,8 +13,17 @@
     let newAccountStartingBalance: number = $state(0);
     let newAccountOwnerId: string = $state("");
 
+    const completedValueMax: number = 4
+    let completedValue: number = $derived(
+        0 + ((newAccountName !== "") ? 1 : 0)
+        + ((newAccountInstitute !== "") ? 1 : 0)
+        + ((newAccountStartingBalance !== undefined) ? 1 : 0)
+        + ((newAccountOwnerId !== "") ? 1 : 0)
+    );
+
     const resetInputFields = () => {
         newAccountName = "";
+        newAccountInstitute = "";
         newAccountStartingBalance = 0;
         newAccountOwnerId = "";
     }
@@ -67,6 +79,28 @@
                 <option value={owner.id}>{owner.firstName} {owner.lastName}</option>
             {/each}
         </select>
+    </div>
+    {#if completedValue !== 4}
+        <ProgressBar meter="variant-filled-error" track="variant-soft-error" value={completedValue} max={completedValueMax} />
+    {:else}
+        <ProgressBar meter="variant-filled-success" track="variant-soft-success" value={completedValue} max={completedValueMax} />
+    {/if}
+    <div class="w-full flex flex-row space-x-5">
+        {#if newAccountName === ""}
+            <ErrorChip text="Enter Account Name"/>
+        {:else}
+            <SuccessChip text="Account Name"/>
+        {/if}
+        {#if newAccountInstitute === ""}
+            <ErrorChip text="Enter Account Institute"/>
+        {:else}
+            <SuccessChip text="Account Institute"/>
+        {/if}
+        {#if newAccountOwnerId === ""}
+            <ErrorChip text="Select Account Owner"/>
+        {:else}
+            <SuccessChip text="Account Owner"/>
+        {/if}
     </div>
     <div class="grow"></div>
     <div class="flex flex-row space-x-5">

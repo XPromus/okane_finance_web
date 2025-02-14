@@ -2,12 +2,20 @@
     import { postCreateOwner } from "$lib/api/OwnerAPI";
     import type { OwnerDto } from "$lib/types/api/Owner";
     import Icon from "@iconify/svelte";
-    import { Avatar } from "@skeletonlabs/skeleton";
+    import {Avatar, ProgressBar} from "@skeletonlabs/skeleton";
+    import ErrorChip from "$lib/components/ErrorChip.svelte";
+    import SuccessChip from "$lib/components/SuccessChip.svelte";
 
 
     let newOwnerFirstName: string = $state("");
     let newOwnerLastName: string = $state("");
     let newOwnerDate: Date = $state(new Date());
+
+    const completedValueMax: number = 2;
+    let completedValue: number = $derived(
+        0 + ((newOwnerFirstName !== "") ? 1 : 0)
+        + ((newOwnerLastName !== "") ? 1 : 0)
+    );
 
     const onSaveButtonClicked = async () => {
         const ownerToSave: OwnerDto = {
@@ -48,6 +56,23 @@
             <span>Birthday</span>
             <input bind:value={newOwnerDate} class="input" type="date" placeholder="birthday" />
         </label>
+    </div>
+    {#if completedValue !== 4}
+        <ProgressBar meter="variant-filled-error" track="variant-soft-error" value={completedValue} max={completedValueMax} />
+    {:else}
+        <ProgressBar meter="variant-filled-success" track="variant-soft-success" value={completedValue} max={completedValueMax} />
+    {/if}
+    <div class="w-full flex flex-row space-x-5">
+        {#if newOwnerFirstName === ""}
+            <ErrorChip text="Enter Owner First Name"/>
+        {:else}
+            <SuccessChip text="Owner First Name"/>
+        {/if}
+        {#if newOwnerLastName === ""}
+            <ErrorChip text="Enter Owner Last Name"/>
+        {:else}
+            <SuccessChip text="Owner Last Name"/>
+        {/if}
     </div>
     <div class="grow"></div>
     <div class="flex flex-row space-x-5">
