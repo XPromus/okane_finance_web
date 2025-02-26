@@ -11,15 +11,15 @@ export type Account = {
     owner: Owner
 }
 
-export type AccountGetResponseReturn = {
-    accounts: Account[]
-}
-
 export type AccountDto = {
     accountName: string,
     startingBalance: number,
-    institute: string,
+    instituteId: string,
     ownerId: string,
+}
+
+export type AccountGetResponseReturn = {
+    accounts: Account[]
 }
 
 export type AccountReturnType = {

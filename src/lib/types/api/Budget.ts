@@ -2,7 +2,7 @@ import type { UUID } from "crypto"
 import type { Category } from "./Category"
 
 export type Budget = {
-    id: UUID | undefined,
+    id: UUID,
     budgetName: string,
     maxValue: number,
     targetCategories: Category[]

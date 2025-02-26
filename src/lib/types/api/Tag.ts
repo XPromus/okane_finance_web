@@ -6,3 +6,7 @@ export type Tag = {
     tagName: string,
     transactions: Transaction[]
 }
+
+export type TagDto = {
+    tagName: string
+}
