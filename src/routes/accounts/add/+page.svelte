@@ -9,21 +9,21 @@
     let { data }: { data: PageData } = $props();
 
     let newAccountName: string = $state("");
-    let newAccountInstitute: string = $state("");
+    let newAccountInstituteId: string = $state("");
     let newAccountStartingBalance: number = $state(0);
     let newAccountOwnerId: string = $state("");
 
     const completedValueMax: number = 4
     let completedValue: number = $derived(
         0 + ((newAccountName !== "") ? 1 : 0)
-        + ((newAccountInstitute !== "") ? 1 : 0)
+        + ((newAccountInstituteId !== "") ? 1 : 0)
         + ((newAccountStartingBalance !== undefined) ? 1 : 0)
         + ((newAccountOwnerId !== "") ? 1 : 0)
     );
 
     const resetInputFields = () => {
         newAccountName = "";
-        newAccountInstitute = "";
+        newAccountInstituteId = "";
         newAccountStartingBalance = 0;
         newAccountOwnerId = "";
     }
@@ -37,7 +37,7 @@
         const accountToSave: AccountDto = {
             accountName: newAccountName,
             startingBalance: newAccountStartingBalance,
-            institute: newAccountInstitute,
+            instituteId: newAccountInstituteId,
             ownerId: newAccountOwnerId
         };
 
@@ -47,7 +47,7 @@
     }
 
     const checkFieldsCompleted = (): boolean => {
-        return newAccountName != "" && newAccountInstitute != "" && newAccountOwnerId != ""
+        return newAccountName != "" && newAccountInstituteId != "" && newAccountOwnerId != ""
     }
 </script>
 
@@ -58,7 +58,11 @@
     </div>
     <div class="flex flex-col space-y-1">
         <p>Institute</p>
-        <input bind:value={newAccountInstitute} class="input" title="Input (text)" type="text" placeholder="input text" />
+        <select bind:value={newAccountInstituteId} class="select">
+            {#each data.institutes as institute}
+                <option value={institute.id}>{institute.name}</option>
+            {/each}
+        </select>
     </div>
     <div class="flex flex-col space-y-1">
         <p>Starting Balance</p>
@@ -91,7 +95,7 @@
         {:else}
             <SuccessChip text="Account Name"/>
         {/if}
-        {#if newAccountInstitute === ""}
+        {#if newAccountInstituteId === ""}
             <ErrorChip text="Enter Account Institute"/>
         {:else}
             <SuccessChip text="Account Institute"/>

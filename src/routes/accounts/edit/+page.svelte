@@ -10,21 +10,21 @@
 
     let activeAccountId: string = $state("")
     let newAccountName: string = $state("");
-    let newAccountInstitute: string = $state("");
+    let newAccountInstituteId: string = $state("");
     let newAccountStartingBalance: number = $state(0);
     let newAccountOwnerId: string = $state("");
 
     const onAccountButtonClicked = (newAccount: Account) => {
-        activeAccountId = newAccount.id,
-        newAccountName = newAccount.accountName,
-        newAccountInstitute = newAccount.institute,
-        newAccountStartingBalance = newAccount.startingBalance,
-        newAccountOwnerId = newAccount.owner.id
+        activeAccountId = newAccount.id;
+        newAccountName = newAccount.accountName;
+        newAccountInstituteId = newAccount.institute;
+        newAccountStartingBalance = newAccount.startingBalance;
+        newAccountOwnerId = newAccount.owner.id;
     }
 
     const resetInputFields = () => {
         newAccountName = "";
-        newAccountInstitute = "";
+        newAccountInstituteId = "";
         newAccountStartingBalance = 0;
         newAccountOwnerId = "";
     }
@@ -38,7 +38,7 @@
         const accountToSave: AccountDto = {
             accountName: newAccountName,
             startingBalance: newAccountStartingBalance,
-            institute: newAccountInstitute,
+            instituteId: newAccountInstituteId,
             ownerId: newAccountOwnerId
         };
 
@@ -48,7 +48,7 @@
     }
 
     const checkFieldsCompleted = (): boolean => {
-        return newAccountName != "" && newAccountInstitute != "" && newAccountOwnerId != ""
+        return newAccountName != "" && newAccountInstituteId != "" && newAccountOwnerId != ""
     }
 </script>
 
@@ -69,7 +69,11 @@
             </div>
             <div class="flex flex-col space-y-1">
                 <p>Institute</p>
-                <input bind:value={newAccountInstitute} class="input" title="Input (text)" type="text" placeholder="input text" />
+                <select bind:value={newAccountInstituteId} class="select">
+                    {#each data.institutes as institute}
+                        <option value={institute.id}>{institute.name}</option>
+                    {/each}
+                </select>
             </div>
             <div class="flex flex-col space-y-1">
                 <p>Starting Balance</p>
@@ -86,7 +90,7 @@
             <div class="flex flex-col space-y-1">
                 <p>Account Owner</p>
                 <select bind:value={newAccountOwnerId} class="select">
-                    {#each data.owners as owner, i }
+                    {#each data.owners as owner}
                         <option value={owner.id}>{owner.firstName} {owner.lastName}</option>
                     {/each}
                 </select>
