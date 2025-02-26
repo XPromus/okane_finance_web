@@ -3,7 +3,9 @@
 	import '../app.css';
   	import { page } from '$app/stores';
   	import Icon from '@iconify/svelte';
-	import TitleBar from "$lib/components/TitleBar.svelte";
+	import { initializeStores, Toast } from "@skeletonlabs/skeleton";
+
+	initializeStores();
 
 	type TabData = {
 		url: string,
@@ -13,6 +15,7 @@
 
 	const tabData: TabData[] = [
 		{url: "/owners", text: "Owners", icon: "material-symbols:person"},
+		{url: "/institutes", text: "Institutes", icon: ""},
 		{url: "/accounts", text: "Accounts", icon: "material-symbols:person"},
 		{url: "/transactions", text: "Transactions", icon: "material-symbols:person"},
 		{url: "/payees", text: "Payees", icon: "material-symbols:person"},
@@ -27,6 +30,8 @@
 
 	let { children } = $props();
 </script>
+
+<Toast />
 
 <div class="w-screen h-screen flex flex-col">
 	<!--<TitleBar />-->

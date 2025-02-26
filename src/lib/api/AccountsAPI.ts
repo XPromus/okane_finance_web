@@ -71,16 +71,3 @@ export const deleteAccount = async (id: string): Promise<boolean> => {
 
     return response.ok
 }
-
-export const addTransactions = async (id: string, transactions: string[]): Promise<Account> => {
-    const response = await fetch(baseURL + "/accounts/" + id + "/transactions", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(transactions)
-    });
-
-    const responseData: Promise<Account> = response.json()
-    return responseData;
-}
