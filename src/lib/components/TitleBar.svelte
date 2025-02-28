@@ -1,24 +1,63 @@
 <script lang="ts">
+    import { goto } from "$app/navigation";
+    import { page } from "$app/state";
+    import { onMount } from "svelte";
 
-    import {AppBar, LightSwitch} from "@skeletonlabs/skeleton";
-import Icon from "@iconify/svelte";
+    let activeTab = $state(0);
+
+    type TabData = {
+		url: string,
+		text: string,
+		icon: string
+	};
+
+	const tabData: TabData[] = [
+		{url: "/owners", text: "Owners", icon: "material-symbols:person"},
+		{url: "/institutes", text: "Institutes", icon: ""},
+		{url: "/accounts", text: "Accounts", icon: "material-symbols:person"},
+		{url: "/transactions", text: "Transactions", icon: "material-symbols:person"},
+		{url: "/payees", text: "Payees", icon: "material-symbols:person"},
+		{url: "/categories", text: "Categories", icon: "material-symbols:person"},
+		{url: "/tags", text: "Tags", icon: "material-symbols:person"},
+        {url: "/stocks", text: "Stocks", icon: "material-symbols:person"}
+	];
+
+    const getTopLevelPath = (path: string): string => {
+		const splitPath = path.split("/")
+		return splitPath[1]
+	}
+
+    const onTabButtonClicked = (url: string, index: number) => {
+        goto(url);
+        activeTab = index;
+    }
+
+    onMount(() => {
+        const path = getTopLevelPath(page.url.pathname);
+        for (let i = 0; i < tabData.length; i++) {
+            const element = tabData[i];
+            if (getTopLevelPath(element.url) === path) {
+                activeTab = i;
+                break;
+            }
+        }        
+    })
 </script>
 
-<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
-    <svelte:fragment slot="lead">
-        <span>Okane Finance</span>
-    </svelte:fragment>
-    <span>Center</span>
-    <svelte:fragment slot="trail">
-        <button type="button" class="btn btn-icon variant-soft-tertiary">
-            <Icon icon="material-symbols:person-rounded" width="24" height="24" />
-        </button>
-        <button type="button" class="btn variant-soft-tertiary">
-            <Icon icon="material-symbols:database-search-rounded" width="24" height="24" />
-            <span>Data</span>
-        </button>
-        <div class="flex flex-row justify-end content-center items-center">
-            <LightSwitch />
+<div class="w-full h-fit flex flex-col">
+    <div class="w-full border-b-2 border-surface-500">
+        <div class="flex flex-row space-x-1 px-1 pt-1">
+            {#each tabData as tab, i}
+                {#if i == activeTab}
+                    <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="grow p-1 rounded-t-lg variant-ghost-primary">
+                        {tab.text}
+                    </button>
+                {:else}
+                    <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="grow p-1 rounded-t-lg variant-ringed-surface hover:variant-ghost-surface">
+                        {tab.text}
+                    </button>
+                {/if}
+            {/each}
         </div>
-    </svelte:fragment>
-</AppBar>
+    </div>
+</div>
