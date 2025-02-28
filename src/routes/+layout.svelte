@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { initializeStores, Toast } from "@skeletonlabs/skeleton";
-    import TitleBar from '$lib/components/TitleBar.svelte';
+    import NavigationBar from '$lib/components/NavigationBar.svelte';
 
 	initializeStores();
 
@@ -11,7 +11,7 @@
 <Toast />
 
 <div class="w-screen h-screen flex flex-row">
-	<TitleBar />
+	<NavigationBar />
 	<div class="grow">
 		{@render children()}
 	</div>

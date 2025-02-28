@@ -1,5 +1,6 @@
 <script lang="ts">
     import { postCreateOwner } from "$lib/api/OwnerAPI";
+    import CardTitle from "$lib/components/elements/CardTitle.svelte";
     import type { CreateOwnerDto } from "$lib/types/api/Owner";
     import Icon from "@iconify/svelte";
 
@@ -29,7 +30,7 @@
 </script>
 
 <div class="flex flex-col space-y-5 w-full h-full p-5">
-    <span class="w-full font-bold text-center">Add</span>
+    <CardTitle text="Add"/>
     <div class="flex flex-col space-y-1">
         <span>First Name</span>
         <input bind:value={newOwnerFirstName} class="input w-full" type="text" placeholder="first name" />

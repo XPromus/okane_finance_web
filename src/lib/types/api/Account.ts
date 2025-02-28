@@ -18,6 +18,29 @@ export type AccountDto = {
     ownerId: string,
 }
 
+export type CreateAccountDto = {
+    accountName: string,
+    startingBalance: number,
+    instituteID: string,
+    ownerID: string
+}
+
+export type EditAccountDto = {
+    accountName: string | undefined,
+    startingBalance: number | undefined,
+    instituteID: string | undefined,
+    ownerID: string | undefined
+}
+
+export type GetAccountDto = {
+    id: string,
+    accountName: string,
+    startingBalance: number,
+    instituteID: string,
+    transactionIDs: string[],
+    ownerID: string
+}
+
 export type AccountGetResponseReturn = {
     accounts: Account[]
 }

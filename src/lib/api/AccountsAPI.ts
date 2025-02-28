@@ -1,7 +1,7 @@
 import { baseURL } from "$lib/config/consts"
-import type { Account, AccountDto } from "$lib/types/api/Account"
+import type { Account, AccountDto, CreateAccountDto, EditAccountDto, GetAccountDto } from "$lib/types/api/Account"
 
-export const getAllAccounts = async (): Promise<Account[]> => {
+export const getAllAccounts = async (): Promise<GetAccountDto[]> => {
     const url = baseURL + "/accounts"
 	const response = await fetch(url, {
 		method: "GET",
@@ -9,7 +9,7 @@ export const getAllAccounts = async (): Promise<Account[]> => {
 			"Content-Type": "application/json"
 		}
 	})
-	const accounts: Account[] = await response.json()
+	const accounts: GetAccountDto[] = await response.json()
 	return accounts
 }
 
@@ -18,7 +18,7 @@ export const getAccounts = async (
     accountName: string | undefined,
     startingBalance: number | undefined,
     institute: string | undefined,
-): Promise<Account[]> => {
+): Promise<GetAccountDto[]> => {
     const params: Record<string, string | number | undefined> = {
         id: id,
         accountName: accountName,
@@ -34,11 +34,11 @@ export const getAccounts = async (
 		},
         
 	})
-	const owners: Account[] = await response.json()
+	const owners: GetAccountDto[] = await response.json()
 	return owners
 }
 
-export const postCreateAccount = async (accountDto: AccountDto): Promise<Account> => {
+export const postCreateAccount = async (accountDto: CreateAccountDto): Promise<GetAccountDto> => {
     const response = await fetch(baseURL + "/accounts", {
         method: "POST",
         headers: {
@@ -47,11 +47,11 @@ export const postCreateAccount = async (accountDto: AccountDto): Promise<Account
         body: JSON.stringify(accountDto)
     });
 
-    const responseData: Promise<Account> = response.json()
+    const responseData: GetAccountDto = await response.json()
     return responseData;
 }
 
-export const putUpdateAccount = async (accountDto: AccountDto, id: string): Promise<Account> => {
+export const putUpdateAccount = async (accountDto: EditAccountDto, id: string): Promise<GetAccountDto> => {
     const response = await fetch(baseURL + "/accounts/" + id, {
         method: "PUT",
         headers: {
@@ -60,7 +60,7 @@ export const putUpdateAccount = async (accountDto: AccountDto, id: string): Prom
         body: JSON.stringify(accountDto)
     });
 
-    const responseData: Promise<Account> = response.json()
+    const responseData: GetAccountDto = await response.json()
     return responseData;
 }
 

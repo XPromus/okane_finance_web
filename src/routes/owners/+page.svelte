@@ -1,8 +1,8 @@
 <script lang="ts">
     import { getAllOwners } from "$lib/api/OwnerAPI";
-    import OwnerAddPage from "$lib/components/owners/OwnerAddPage.svelte";
-    import OwnerEditPage from "$lib/components/owners/OwnerEditPage.svelte";
-    import OwnerOverviewPage from "$lib/components/owners/OwnerOverviewPage.svelte";
+    import OwnerAddPage from "$lib/components/pages/owners/OwnerAddPage.svelte";
+    import OwnerEditPage from "$lib/components/pages/owners/OwnerEditPage.svelte";
+    import OwnerOverviewPage from "$lib/components/pages/owners/OwnerOverviewPage.svelte";
     import { setContext } from "svelte";
     import type { PageData } from './$types';
     import type { GetOwnerDto } from "$lib/types/api/Owner";
@@ -13,18 +13,18 @@
     const updateOwners = async () => {
         owners = await getAllOwners()
     }
-
-    setContext("owners", data.owners)
 </script>
 
-<div class="w-full h-full grid grid-flow-col grid-rows-4 gap-4">
-    <div class="col-span-2 row-span-4 card">
+<div class="w-full h-full flex flex-row space-x-5">
+    <div class="card basis-1/2">
         <OwnerOverviewPage owners={owners} />
     </div>
-    <div class="col-span-1 row-span-2 card">
-        <OwnerAddPage {updateOwners} />
-    </div>
-    <div class="col-span-1 row-span-2 card">
-        <OwnerEditPage owners={owners} {updateOwners} />
+    <div class="basis-1/2 flex flex-col space-y-5">
+        <div class="card basis-1/2">
+            <OwnerAddPage {updateOwners} />
+        </div>
+        <div class="card basis-1/2">
+            <OwnerEditPage owners={owners} {updateOwners} />
+        </div>
     </div>
 </div>

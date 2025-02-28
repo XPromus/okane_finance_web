@@ -1,5 +1,6 @@
 <script lang="ts">
     import { deleteOwner, putUpdateOwner } from "$lib/api/OwnerAPI";
+    import CardTitle from "$lib/components/elements/CardTitle.svelte";
     import type { EditOwnerDto, GetOwnerDto } from "$lib/types/api/Owner";
     import Icon from "@iconify/svelte";
 
@@ -28,7 +29,7 @@
 </script>
 
 <div class="flex flex-col space-y-5 h-full w-full p-5">
-    <span class="w-full font-bold text-center">Edit</span>
+    <CardTitle text="Edit"/>
     <select bind:value={currentOwnerId} class="input" disabled={owners.length == 0}>
         {#each owners as owner }
             <option value={owner.id}>{owner.firstName} {owner.lastName}</option>

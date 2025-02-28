@@ -1,9 +1,9 @@
-import type {Institute, InstituteDto} from "$lib/types/api/Institute";
+import type {CreateInstituteDto, EditInstituteDto, GetInstituteDto} from "$lib/types/api/Institute";
 import {baseURL} from "$lib/config/consts";
 
 const apiBasePath: string = "/institutes";
 
-export const getAllInstitutes = async (): Promise<Institute[]> => {
+export const getAllInstitutes = async (): Promise<GetInstituteDto[]> => {
     const url = `${baseURL}${apiBasePath}`;
     const response = await fetch(url, {
         method: "GET",
@@ -17,7 +17,7 @@ export const getAllInstitutes = async (): Promise<Institute[]> => {
 export const getInstitutes = async (
     id: string | undefined,
     name: string | undefined
-): Promise<Institute[]> => {
+): Promise<GetInstituteDto[]> => {
     const params: Record<string, string | undefined> = {
         id: id,
         name: name
@@ -34,23 +34,25 @@ export const getInstitutes = async (
 }
 
 export const postCreateInstitute = async (
-    instituteDto: InstituteDto
-): Promise<Response> => {
+    instituteDto: CreateInstituteDto
+): Promise<GetInstituteDto> => {
     const url = `${baseURL}${apiBasePath}`;
 
-    return await fetch(url, {
+    const response = await fetch(url, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(instituteDto)
-    })
+    });
+
+    return await response.json();
 }
 
 export const putUpdateInstitute = async (
     id: string,
-    instituteDto: InstituteDto
-): Promise<Institute> => {
+    instituteDto: EditInstituteDto
+): Promise<GetInstituteDto> => {
     const url = `${baseURL}${apiBasePath}/${id}`;
 
     const response = await fetch(url, {

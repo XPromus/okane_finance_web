@@ -1,27 +1,20 @@
 <script lang="ts">
-    import type {InstituteDto} from "$lib/types/api/Institute";
-    import {postCreateInstitute} from "$lib/api/InstitutesAPI";
+    import { postCreateInstitute } from "$lib/api/InstitutesAPI";
+    import CardTitle from "$lib/components/elements/CardTitle.svelte";
+    import type { CreateInstituteDto } from "$lib/types/api/Institute";
     import Icon from "@iconify/svelte";
-    import {getToastStore, type ToastSettings} from "@skeletonlabs/skeleton";
 
-    const toastStore = getToastStore();
-
+    let { updateInstitutes } = $props();
     let newInstituteName: string = $state("");
 
     const onSaveButtonClicked = async () => {
-        const instituteDto: InstituteDto = {
-            name: newInstituteName
-        };
-
-        const newInstituteResponse = await postCreateInstitute(instituteDto);
-        if (newInstituteResponse.ok) {
-            const t: ToastSettings = {
-                message: "New Institute has been created",
-                timeout: 2500
-            };
-            toastStore.trigger(t);
+        const newInstitute: CreateInstituteDto = {
+            instituteName: newInstituteName
         }
+        
+        await postCreateInstitute(newInstitute);
         resetInputFields();
+        updateInstitutes();
     }
 
     const resetInputFields = () => {
@@ -29,7 +22,8 @@
     }
 </script>
 
-<div class="card w-full h-full p-5 flex flex-col space-y-5">
+<div class="flex flex-col space-y-5 h-full w-full p-5">
+    <CardTitle text="Create"/>
     <div class="flex flex-col space-y-5">
         <label class="label">
             <span>Name</span>

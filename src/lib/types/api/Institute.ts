@@ -8,6 +8,21 @@ export type Institute = {
     depots: Depot[]
 }
 
+export type CreateInstituteDto = {
+    instituteName: string
+}
+
+export type EditInstituteDto = {
+    instituteName: string | undefined
+}
+
+export type GetInstituteDto = {
+    id: string,
+    instituteName: string,
+    accountIDs: string[],
+    depotIDs: string[]
+}
+
 export type InstituteDto = {
     name: string
 }
