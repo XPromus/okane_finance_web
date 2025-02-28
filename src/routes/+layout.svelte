@@ -10,7 +10,7 @@
 
 <Toast />
 
-<div class="w-screen h-screen flex flex-col">
+<div class="w-screen h-screen flex flex-row">
 	<TitleBar />
 	<div class="grow">
 		{@render children()}

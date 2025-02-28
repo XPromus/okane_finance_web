@@ -12,11 +12,26 @@ export type Owner = {
 }
 
 export type OwnerGetResponseReturn = {
-    owners: Owner[]
+    owners: GetOwnerDto[]
 }
 
-export type OwnerDto = {
+export type CreateOwnerDto = {
+    firstName: string,
+    lastName: string,
+    birthday: Date | undefined
+}
+
+export type EditOwnerDto = {
+    firstName: string | undefined,
+    lastName: string | undefined,
+    birthday: Date | undefined
+}
+
+export type GetOwnerDto = {
+    id: string,
     firstName: string,
     lastName: string,
     birthday: Date | undefined,
+    accountIDs: string[],
+    depotIDs: string[]
 }

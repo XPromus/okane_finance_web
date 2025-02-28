@@ -1,6 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { page } from "$app/state";
+    import Icon from "@iconify/svelte";
     import { onMount } from "svelte";
 
     let activeTab = $state(0);
@@ -12,14 +13,13 @@
 	};
 
 	const tabData: TabData[] = [
-		{url: "/owners", text: "Owners", icon: "material-symbols:person"},
-		{url: "/institutes", text: "Institutes", icon: ""},
-		{url: "/accounts", text: "Accounts", icon: "material-symbols:person"},
-		{url: "/transactions", text: "Transactions", icon: "material-symbols:person"},
-		{url: "/payees", text: "Payees", icon: "material-symbols:person"},
-		{url: "/categories", text: "Categories", icon: "material-symbols:person"},
-		{url: "/tags", text: "Tags", icon: "material-symbols:person"},
-        {url: "/stocks", text: "Stocks", icon: "material-symbols:person"}
+		{url: "/owners", text: "Owners", icon: "material-symbols:person-rounded"},
+        {url: "/institutes", text: "Institutes", icon: "material-symbols:house-rounded"},
+        {url: "/accounts", text: "Accounts", icon: "material-symbols:account-balance-rounded"},
+        {url: "/payees", text: "Payees", icon: "material-symbols:group-rounded"},
+        {url: "/transactions", text: "Transactions", icon: "material-symbols:attach-money-rounded"},
+        {url: "/categories", text: "Categories", icon: "material-symbols:category-rounded"},
+        {url: "/stocks", text: "Stocks", icon: "material-symbols:finance-mode-rounded"},
 	];
 
     const getTopLevelPath = (path: string): string => {
@@ -44,20 +44,20 @@
     })
 </script>
 
-<div class="w-full h-fit flex flex-col bg-surface-200">
-    <div class="w-full border-b-2 border-surface-500">
-        <div class="flex flex-row space-x-1 px-2 pt-2">
-            {#each tabData as tab, i}
-                {#if i == activeTab}
-                    <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="grow p-1 rounded-t-lg variant-ghost-primary">
-                        {tab.text}
-                    </button>
-                {:else}
-                    <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="grow p-1 rounded-t-lg variant-ringed-surface hover:variant-ghost-surface">
-                        {tab.text}
-                    </button>
-                {/if}
-            {/each}
-        </div>
-    </div>
+<div class="flex flex-col bg-surface-100 space-y-2 p-2">
+    {#each tabData as tab, i }
+        {#if i == activeTab}
+            <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg variant-soft-primary">
+                <Icon icon={tab.icon} width="24" height="24" />
+            </button>
+        {:else}
+            <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg variant-soft-surface hover:variant-ghost-surface">
+                <Icon icon={tab.icon} width="24" height="24" />
+            </button>
+        {/if}
+    {/each}
+    <div class="grow"></div>
+    <button onclick={() => { goto("/docs") }} class="p-2 rounded-lg variant-soft-surface hover:variant-ghost-surface">
+        <Icon icon="material-symbols:book-2-rounded" width="24" height="24" />
+    </button>
 </div>
