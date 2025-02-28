@@ -44,9 +44,9 @@
     })
 </script>
 
-<div class="w-full h-fit flex flex-col">
+<div class="w-full h-fit flex flex-col bg-surface-200">
     <div class="w-full border-b-2 border-surface-500">
-        <div class="flex flex-row space-x-1 px-1 pt-1">
+        <div class="flex flex-row space-x-1 px-2 pt-2">
             {#each tabData as tab, i}
                 {#if i == activeTab}
                     <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="grow p-1 rounded-t-lg variant-ghost-primary">
