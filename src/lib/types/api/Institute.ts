@@ -8,6 +8,10 @@ export type Institute = {
     depots: Depot[]
 }
 
+export type InstituteDto = {
+    name: string
+}
+
 export type CreateInstituteDto = {
     instituteName: string
 }
@@ -21,8 +25,4 @@ export type GetInstituteDto = {
     instituteName: string,
     accountIDs: string[],
     depotIDs: string[]
-}
-
-export type InstituteDto = {
-    name: string
 }

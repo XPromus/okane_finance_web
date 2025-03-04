@@ -16,3 +16,26 @@ export type DepotDto = {
     instituteId: string,
     taxExemptionEntryId: string
 }
+
+export type CreateDepotDto = {
+    instituteID: string,
+    depotName: string,
+    ownerID: string,
+    taxExemptionEntryID: string | undefined
+}
+
+export type EditDepotDto = {
+    instituteID: string | undefined,
+    depotName: string | undefined,
+    ownerID: string | undefined,
+    taxExemptionEntryID: string | undefined
+}
+
+export type GetDepotDto = {
+    id: string,
+    depotName: string,
+    instituteID: string,
+    ownerID: string,
+    taxExemptionEntryID: string | undefined,
+    stockOrderIDs: string[]
+}

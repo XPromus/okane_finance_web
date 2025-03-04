@@ -10,3 +10,17 @@ export type Payee = {
 export type PayeeDto = {
     payeeName: string
 }
+
+export type CreatePayeeDto = {
+    payeeName: string
+}
+
+export type EditPayeeDto = {
+    payeeName: string | undefined
+}
+
+export type GetPayeeDto = {
+    id: string,
+    payeeName: string,
+    transactionIDs: string[]
+}

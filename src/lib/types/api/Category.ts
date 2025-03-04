@@ -17,3 +17,26 @@ export type CategoryDto = {
     parentCategoryId: string,
     childCategoryId: string
 }
+
+export type CreateCategoryDto = {
+    categoryName: string,
+    parentCategoryID: string | undefined,
+    childCategoryID: string | undefined,
+    targetBudgetID: string | undefined
+}
+
+export type EditCategoryDto = {
+    categoryName: string | undefined,
+    parentCategoryID: string | undefined,
+    childCategoryID: string | undefined,
+    targetBudgetID: string | undefined
+}
+
+export type GetCategoryDto = {
+    id: string,
+    categoryName: string,
+    transactionIDs: string[],
+    parentCategoryID: string,
+    childCategoryID: string,
+    targetBudgetID: string
+}

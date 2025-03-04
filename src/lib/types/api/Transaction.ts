@@ -26,3 +26,34 @@ export type TransactionDto = {
     categoryId: string,
     tagIds: string[]
 }
+
+export type CreateTransactionDto = {
+    transactionName: string,
+    doneDate: Date,
+    finishedDate: Date | undefined,
+    amount: number,
+    targetAccountID: string,
+    targetPayeeID: string,
+    targetCategoryID: string | undefined
+}
+
+export type EditTransactionDto = {
+    transactionName: string | undefined,
+    doneDate: Date | undefined,
+    finishedDate: Date | undefined,
+    amount: number | undefined,
+    targetAccountID: string | undefined,
+    targetPayeeID: string | undefined,
+    targetCategoryID: string | undefined
+}
+
+export type GetTransactionDto = {
+    id: string,
+    transactionName: string,
+    doneDate: Date,
+    finishedDate: Date | undefined,
+    amount: number,
+    targetAccountID: string,
+    targetPayeeID: string,
+    targetCategoryID: string | undefined
+}
