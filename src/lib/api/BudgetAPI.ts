@@ -1,10 +1,10 @@
 import { baseURL } from "$lib/config/consts"
-import type { Budget, BudgetDto } from "$lib/types/api/Budget"
-import type { Owner, OwnerDto } from "$lib/types/api/Owner"
+import type { EditAccountDto } from "$lib/types/api/Account"
+import type { CreateBudgetDto, GetBudgetDto } from "$lib/types/api/Budget"
 
 const controllerURL = "/budgets"
 
-export const getAllBudgets = async (): Promise<Budget[]> => {
+export const getAllBudgets = async (): Promise<GetBudgetDto[]> => {
     const url = baseURL + controllerURL
 	const response = await fetch(url, {
 		method: "GET",
@@ -12,7 +12,7 @@ export const getAllBudgets = async (): Promise<Budget[]> => {
 			"Content-Type": "application/json"
 		}
 	})
-	const owners: Budget[] = await response.json()
+	const owners: GetBudgetDto[] = await response.json()
 	return owners
 }
 
@@ -20,7 +20,7 @@ export const getBudgets = async (
     id: string | undefined,
     budgetName: string | undefined,
     maxValue: number | undefined,
-): Promise<Budget[]> => {
+): Promise<GetBudgetDto[]> => {
     const params: Record<string, string | number | undefined> = {
         id: id,
         budgetName: budgetName,
@@ -35,11 +35,13 @@ export const getBudgets = async (
 		},
         
 	})
-	const owners: Budget[] = await response.json()
+	const owners: GetBudgetDto[] = await response.json()
 	return owners
 }
 
-export const postCreateBudget = async (budgetDto: BudgetDto): Promise<Budget> => {
+export const postCreateBudget = async (
+    budgetDto: CreateBudgetDto
+): Promise<GetBudgetDto> => {
     const response = await fetch(baseURL + controllerURL, {
         method: "POST",
         headers: {
@@ -48,11 +50,14 @@ export const postCreateBudget = async (budgetDto: BudgetDto): Promise<Budget> =>
         body: JSON.stringify(budgetDto)
     });
 
-    const responseData: Promise<Budget> = response.json()
+    const responseData: GetBudgetDto = await response.json()
     return responseData;
 }
 
-export const putUpdateBudget = async (budgetDto: BudgetDto, id: string): Promise<Budget> => {
+export const putUpdateBudget = async (
+    id: string,
+    budgetDto: EditAccountDto
+): Promise<GetBudgetDto> => {
     const response = await fetch(baseURL + controllerURL + "/" + id, {
         method: "PUT",
         headers: {
@@ -61,7 +66,7 @@ export const putUpdateBudget = async (budgetDto: BudgetDto, id: string): Promise
         body: JSON.stringify(budgetDto)
     });
 
-    const responseData: Promise<Budget> = response.json()
+    const responseData: GetBudgetDto = await response.json()
     return responseData;
 }
 
@@ -71,17 +76,4 @@ export const deleteBudget = async (id: string): Promise<boolean> => {
     });
 
     return response.ok
-}
-
-export const addCategories = async (id: string, categories: string[]): Promise<Budget> => {
-    const response = await fetch(baseURL + controllerURL + "/" + id + "/categories", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(categories)
-    });
-
-    const responseData: Promise<Budget> = response.json()
-    return responseData;
 }

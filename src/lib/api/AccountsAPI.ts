@@ -17,13 +17,15 @@ export const getAccounts = async (
     id: string | undefined,
     accountName: string | undefined,
     startingBalance: number | undefined,
-    institute: string | undefined,
+    instituteID: string | undefined,
+    ownerID: string | undefined,
 ): Promise<GetAccountDto[]> => {
     const params: Record<string, string | number | undefined> = {
         id: id,
         accountName: accountName,
         startingBalance: startingBalance,
-        institute: institute
+        instituteID: instituteID,
+        ownerID: ownerID
     }
 
     const url = baseURL + "/accounts" + "?" + params.toString()
@@ -51,7 +53,7 @@ export const postCreateAccount = async (accountDto: CreateAccountDto): Promise<G
     return responseData;
 }
 
-export const putUpdateAccount = async (accountDto: EditAccountDto, id: string): Promise<GetAccountDto> => {
+export const putUpdateAccount = async (id: string, accountDto: EditAccountDto): Promise<GetAccountDto> => {
     const response = await fetch(baseURL + "/accounts/" + id, {
         method: "PUT",
         headers: {
