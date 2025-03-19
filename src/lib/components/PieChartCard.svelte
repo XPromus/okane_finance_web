@@ -1,6 +1,6 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
-    import { ConicGradient, type ConicStop } from "@skeletonlabs/skeleton";
+    import { type ConicStop } from "@skeletonlabs/skeleton-svelte";
 
     let open = $state(true)    
     const conicStops: ConicStop[] = [
@@ -12,10 +12,10 @@
 
 <div class="card p-5 grow">
     <header class="flex flex-row-reverse space-x-2 space-x-reverse">
-        <button class="btn-icon btn-icon-sm variant-soft-error">
+        <button class="btn-icon btn-icon-sm preset-tonal-error">
             <Icon icon="material-symbols:close-small-rounded" width="32" height="32" />
         </button>
-        <button onclick={() => {open = !open}} class="btn-icon btn-icon-sm variant-soft-surface">
+        <button onclick={() => {open = !open}} class="btn-icon btn-icon-sm preset-tonal-surface">
             {#if open}
                 <Icon icon="material-symbols:arrow-drop-up" width="32" height="32" />
             {:else}    

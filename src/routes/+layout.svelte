@@ -1,14 +1,12 @@
 <script lang="ts">
 	import '../app.css';
-	import { initializeStores, Toast } from "@skeletonlabs/skeleton";
+	import { ToastProvider } from "@skeletonlabs/skeleton-svelte";
     import NavigationBar from '$lib/components/NavigationBar.svelte';
-
-	initializeStores();
 
 	let { children } = $props();
 </script>
 
-<Toast />
+<ToastProvider />
 
 <div class="w-screen h-screen flex flex-row">
 	<NavigationBar />

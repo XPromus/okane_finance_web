@@ -51,21 +51,21 @@
         {#if i == tabData.length - 1}
             <div class="grow"></div>
             {#if i == activeTab}
-                <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg variant-soft-primary">
+                <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg preset-tonal-primary">
                     <Icon icon="material-symbols:book-2-rounded" width="24" height="24" />
                 </button>
             {:else}
-                <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg variant-soft-surface hover:variant-ghost-surface">
+                <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg preset-tonal-surface hover:preset-tonal-surface border border-surface-500">
                     <Icon icon="material-symbols:book-2-rounded" width="24" height="24" />
                 </button>
             {/if}
         {:else}
             {#if i == activeTab}
-                <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg variant-soft-primary">
+                <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg preset-tonal-primary">
                     <Icon icon={tab.icon} width="24" height="24" />
                 </button>
             {:else}
-                <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg variant-soft-surface hover:variant-ghost-surface">
+                <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg preset-tonal-surface hover:preset-tonal-surface border border-surface-500">
                     <Icon icon={tab.icon} width="24" height="24" />
                 </button>
             {/if}

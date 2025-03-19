@@ -47,15 +47,15 @@
         </div>
         <div class="grow"></div>
         <div class="flex flex-row space-x-5">
-            <button onclick={onDeleteButtonClicked} type="button" class="btn variant-soft-error basis-1/4">
+            <button onclick={onDeleteButtonClicked} type="button" class="btn preset-tonal-error basis-1/4">
                 <Icon icon="material-symbols:delete-forever-rounded" width="24" height="24" />
                 <span>Delete</span>
             </button>
-            <button onclick={resetInputFields} type="button" class="btn variant-soft-surface basis-1/2">
+            <button onclick={resetInputFields} type="button" class="btn preset-tonal-surface basis-1/2">
                 <Icon icon="material-symbols:reset-settings-rounded" width="24" height="24" />
                 <span>Reset</span>
             </button>
-            <button onclick={onSaveButtonClicked} type="button" class="btn variant-soft-success basis-1/2">
+            <button onclick={onSaveButtonClicked} type="button" class="btn preset-tonal-success basis-1/2">
                 <Icon icon="material-symbols:save-rounded" width="24" height="24" />
                 <span>Save</span>
             </button>

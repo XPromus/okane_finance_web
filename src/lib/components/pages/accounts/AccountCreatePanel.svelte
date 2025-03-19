@@ -74,11 +74,11 @@
     </div>
     <div class="grow"></div>
     <div class="flex flex-row space-x-5">
-        <button onclick={resetInputFields} type="button" class="btn variant-soft-surface basis-1/2">
+        <button onclick={resetInputFields} type="button" class="btn preset-tonal-surface basis-1/2">
             <Icon icon="material-symbols:reset-settings-rounded" width="24" height="24" />
             <span>Reset</span>
         </button>
-        <button onclick={onSaveButtonClicked} type="button" class="btn variant-soft-success basis-1/2">
+        <button onclick={onSaveButtonClicked} type="button" class="btn preset-tonal-success basis-1/2">
             <Icon icon="material-symbols:save-rounded" width="24" height="24" />
             <span>Save</span>
         </button>
