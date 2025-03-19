@@ -1,5 +1,0 @@
-
-
-<div>
-    Categories
-</div>

@@ -1,0 +1,70 @@
+<script lang="ts">
+    import { postCreateAccount } from "$lib/api/AccountsAPI";
+    import CardTitle from "$lib/components/elements/CardTitle.svelte";
+    import InputField from "$lib/components/InputField.svelte";
+    import type { CreateAccountDto } from "$lib/types/api/Account";
+    import type { GetInstituteDto } from "$lib/types/api/Institute";
+    import type { GetOwnerDto } from "$lib/types/api/Owner";
+
+    let { 
+        institutes, 
+        owners,
+        update 
+    }: { 
+        institutes: GetInstituteDto[], 
+        owners: GetOwnerDto[],
+        update: any
+    } = $props();
+
+    let newAccountName: string = $state("");
+    let newAccountInstituteId: string = $state("");
+    let newAccountStartingBalance: number = $state(0);
+    let newAccountOwnerId: string = $state("");
+
+    const onSaveButtonClicked = async () => {
+        const accountToSave: CreateAccountDto = {
+            accountName: newAccountName,
+            startingBalance: newAccountStartingBalance,
+            instituteID: newAccountInstituteId,
+            ownerID: newAccountOwnerId
+        };
+
+        await postCreateAccount(accountToSave);
+        update();
+    }
+
+    const resetInputFields = () => {
+        newAccountName = "";
+        newAccountInstituteId = "";
+        newAccountStartingBalance = 0;
+        newAccountOwnerId = "";
+    }
+</script>
+
+<div class="card preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-full p-4 text-center flex flex-col space-y-5 drop-shadow-sm">
+    <CardTitle text="Create Account"/>
+    <div class="flex flex-col space-y-1">
+        <InputField bind:value={newAccountName} type="text" placeholder="Account Name" optional={false}/>
+        <InputField bind:value={newAccountStartingBalance} type="number" placeholder="Starting Balance" optional={false}/>
+        <select bind:value={newAccountInstituteId} class="select">
+            {#each institutes as institute }
+                <option value={institute.id}></option>
+            {/each}
+        </select>
+        <select bind:value={newAccountOwnerId} class="select">
+            {#each owners as owner }
+                <option value={owner.id}></option>
+            {/each}
+        </select>
+    </div>
+    <div class="flex flex-row space-x-5">
+        <button onclick={resetInputFields} type="button" class="btn preset-tonal-surface basis-1/2">
+            <iconify-icon icon="material-symbols:reset-settings-rounded" width="24" height="24"></iconify-icon>
+            <span>Reset</span>
+        </button>
+        <button onclick={onSaveButtonClicked} type="button" class="btn preset-tonal-success basis-1/2">
+            <iconify-icon icon="material-symbols:save-rounded" width="24" height="24"></iconify-icon>
+            <span>Save</span>
+        </button>
+    </div>
+</div>

@@ -7,15 +7,14 @@
 		icon: string
 	};
 
+    const headerTabs: TabData[] = [
+        {url: "/", text: "Home", icon: "material-symbols:home-rounded"}
+    ];
+
 	const tabData: TabData[] = [
-        {url: "/", text: "Home", icon: "material-symbols:home-rounded"},
-		{url: "/owners", text: "Owners", icon: "material-symbols:person-rounded"},
-        {url: "/institutes", text: "Institutes", icon: "material-symbols:house-rounded"},
-        {url: "/accounts", text: "Accounts", icon: "material-symbols:account-balance-rounded"},
-        {url: "/payees", text: "Payees", icon: "material-symbols:group-rounded"},
         {url: "/transactions", text: "Transactions", icon: "material-symbols:attach-money-rounded"},
-        {url: "/categories", text: "Categories", icon: "material-symbols:category-rounded"},
         {url: "/stocks", text: "Stocks", icon: "material-symbols:finance-mode-rounded"},
+        {url: "/data/owners", text: "Data", icon: "material-symbols:database-outline"}
 	];
 
     const footerTabs: TabData[] = [
@@ -24,6 +23,13 @@
 </script>
 
 <Navigation.Rail classes="bg-surface-200">
+    {#snippet header()}
+        {#each headerTabs as tab}
+            <Navigation.Tile label={tab.text} href={tab.url}>
+                <iconify-icon icon={tab.icon} width="32" height="32"></iconify-icon>
+            </Navigation.Tile>
+        {/each}
+    {/snippet}
     {#snippet tiles()}
         {#each tabData as tab}
             <Navigation.Tile label={tab.text} href={tab.url}>

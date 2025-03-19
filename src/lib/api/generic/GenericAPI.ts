@@ -4,7 +4,6 @@ export const getRequest = async <ResponseType>(
 ): Promise<ResponseType> => {
     const requestURL: string = (params !== undefined) ? (url + "?" + params.toString()) : url;
     const response = await fetch(
-        
         requestURL, 
         {
             method: "GET",
