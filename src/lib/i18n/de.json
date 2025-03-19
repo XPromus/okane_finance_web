@@ -1,68 +1,164 @@
 {
-    "navigation": {
-        "home": {
-            "title": "Startseite"
-        },
-        "transactions": {
-            "title": "Transaktionen"
-        },
-        "stocks": {
-            "title": "Anlagen"
-        },
-        "data": {
-            "title": "Daten"
-        },
-        "docs": {
-            "title": "Dokumentation"
-        }
+  "navigation": {
+    "home": {
+      "title": "Startseite"
+    },
+    "transactions": {
+      "title": "Transaktionen"
+    },
+    "stocks": {
+      "title": "Anlagen"
     },
     "data": {
-        "owners": {
-            "navigation": {
-                "title": "Benutzer"
-            },
-            "openCreateMenuButton": {
-                "title": "Benutzer Hinzufügen"
-            },
-            "createMenu": {
-                "title": {
-                    "title": "Erstelle Benutzer"
-                },
-                "firstNamePlaceholder": {
-                    "title": "Vorname"
-                },
-                "lastNamePlaceholder": {
-                    "title": "Nachname"
-                },
-                "birthdayPlaceholder": {
-                    "title": "Geburtstag"
-                }
-            },
-            "editMenu": {
-                "title": {
-                    "title": "Bearbeiten"
-                },
-                "firstNamePlaceholder": {
-                    "title": "Vorname"
-                },
-                "lastNamePlaceholder": {
-                    "title": "Nachname"
-                },
-                "birthdayPlaceholder": {
-                    "title": "Geburtstag"
-                }
-            }
-        }
+      "title": "Daten"
     },
-    "common": {
-        "save": {
-            "title": "Speichern"
-        },
-        "reset": {
-            "title": "Zurücksetzen"
-        },
-        "close": {
-            "title": "Schließen"
-        }
+    "docs": {
+      "title": "Dokumentation"
     }
+  },
+  "data": {
+    "owners": {
+      "navigation": {
+        "title": "Benutzer"
+      },
+      "openCreateMenuButton": {
+        "title": "Benutzer Hinzufügen"
+      },
+      "createMenu": {
+        "title": {
+          "title": "Erstelle Benutzer"
+        },
+        "firstNamePlaceholder": {
+          "title": "Vorname"
+        },
+        "lastNamePlaceholder": {
+          "title": "Nachname"
+        },
+        "birthdayPlaceholder": {
+          "title": "Geburtstag"
+        }
+      },
+      "editMenu": {
+        "title": {
+          "title": "Bearbeiten"
+        },
+        "firstNamePlaceholder": {
+          "title": "Vorname"
+        },
+        "lastNamePlaceholder": {
+          "title": "Nachname"
+        },
+        "birthdayPlaceholder": {
+          "title": "Geburtstag"
+        }
+      }
+    },
+    "accounts": {
+      "createMenu": {
+        "accountNamePlaceholder": {
+          "title": "Account Name"
+        },
+        "institutePlaceholder": {
+          "title": "Institut"
+        },
+        "ownerPlaceholder": {
+          "title": "Benutzer"
+        },
+        "startingBalancePlaceholder": {
+          "title": "Ausgangswert"
+        },
+        "title": {
+          "title": "Konto Erstellen"
+        }
+      },
+      "editMenu": {
+        "accountNamePlaceholder": {
+          "title": "Kontoname"
+        },
+        "institutePlaceholder": {
+          "title": "Institut"
+        },
+        "ownerPlaceholder": {
+          "title": "Benutzer"
+        },
+        "startingBalancePlaceholder": {
+          "title": "Ausgangswert"
+        },
+        "title": {
+          "title": "Bearbeiten"
+        }
+      },
+      "navigation": {
+        "title": "Konten"
+      },
+      "openCreateMenuButton": {
+        "title": "Konto Hinzufügen"
+      }
+    },
+    "categories": {
+      "createMenu": {
+        "categoryNamePlaceholder": {
+          "title": "Kategoriename"
+        },
+        "title": {
+          "title": "Kategorie Erstellen"
+        }
+      },
+      "editMenu": {
+        "categoryNamePlaceholder": {
+          "title": "Kategorienname"
+        },
+        "title": {
+          "title": "Bearbeiten"
+        }
+      }
+    },
+    "institutes": {
+      "createMenu": {
+        "instituteNamePlaceholder": {
+          "title": "Institutsname"
+        },
+        "title": {
+          "title": "Institut Erstellen"
+        }
+      },
+      "editMenu": {
+        "instituteNamePlaceholder": {
+          "title": "Institutsname"
+        },
+        "title": {
+          "title": "Bearbeiten"
+        }
+      }
+    },
+    "payees": {
+      "createMenu": {
+        "payeeNamePlaceholder": {
+          "title": "Name des Zahlungsempängers"
+        },
+        "title": {
+          "title": "Zahlungsempfänger Erstellen"
+        }
+      },
+      "editMenu": {
+        "payeeNamePlaceholder": {
+          "title": "Name des Zahlungsempängers"
+        },
+        "title": {
+          "title": "Bearbeiten"
+        }
+      }
+    }
+  },
+  "common": {
+    "save": {
+      "title": "Speichern"
+    },
+    "reset": {
+      "title": "Zurücksetzen"
+    },
+    "close": {
+      "title": "Schließen"
+    }
+  }
 }

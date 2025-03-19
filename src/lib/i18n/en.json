@@ -1,68 +1,164 @@
 {
-    "navigation": {
-        "home": {
-            "title": "Home"
-        },
-        "transactions": {
-            "title": "Transactions"
-        },
-        "stocks": {
-            "title": "Stocks"
-        },
-        "data": {
-            "title": "Data"
-        },
-        "docs": {
-            "title": "Docs"
-        }
+  "navigation": {
+    "home": {
+      "title": "Home"
+    },
+    "transactions": {
+      "title": "Transactions"
+    },
+    "stocks": {
+      "title": "Stocks"
     },
     "data": {
-        "owners": {
-            "navigation": {
-                "title": "Owners"
-            },
-            "openCreateMenuButton": {
-                "title": "Add Owner"
-            },
-            "createMenu": {
-                "title": {
-                    "title": "Create Owner"
-                },
-                "firstNamePlaceholder": {
-                    "title": "First Name"
-                },
-                "lastNamePlaceholder": {
-                    "title": "Last Name"
-                },
-                "birthdayPlaceholder": {
-                    "title": "Birthday"
-                }
-            },
-            "editMenu": {
-                "title": {
-                    "title": "Edit"
-                },
-                "firstNamePlaceholder": {
-                    "title": "First Name"
-                },
-                "lastNamePlaceholder": {
-                    "title": "Last Name"
-                },
-                "birthdayPlaceholder": {
-                    "title": "Birthday"
-                }
-            }
-        }
+      "title": "Data"
     },
-    "common": {
-        "save": {
-            "title": "Save"
-        },
-        "reset": {
-            "title": "Reset"
-        },
-        "close": {
-            "title": "Close"
-        }
+    "docs": {
+      "title": "Docs"
     }
+  },
+  "data": {
+    "owners": {
+      "navigation": {
+        "title": "Owners"
+      },
+      "openCreateMenuButton": {
+        "title": "Add Owner"
+      },
+      "createMenu": {
+        "title": {
+          "title": "Create Owner"
+        },
+        "firstNamePlaceholder": {
+          "title": "First Name"
+        },
+        "lastNamePlaceholder": {
+          "title": "Last Name"
+        },
+        "birthdayPlaceholder": {
+          "title": "Birthday"
+        }
+      },
+      "editMenu": {
+        "title": {
+          "title": "Edit"
+        },
+        "firstNamePlaceholder": {
+          "title": "First Name"
+        },
+        "lastNamePlaceholder": {
+          "title": "Last Name"
+        },
+        "birthdayPlaceholder": {
+          "title": "Birthday"
+        }
+      }
+    },
+    "accounts": {
+      "navigation": {
+        "title": "Accounts"
+      },
+      "openCreateMenuButton": {
+        "title": "Add Account"
+      },
+      "createMenu": {
+        "title": {
+          "title": "Create Account"
+        },
+        "accountNamePlaceholder": {
+          "title": "Account Name"
+        },
+        "startingBalancePlaceholder": {
+          "title": "Starting Balance"
+        },
+        "institutePlaceholder": {
+          "title": "Institute"
+        },
+        "ownerPlaceholder": {
+          "title": "Owner"
+        }
+      },
+      "editMenu": {
+        "title": {
+          "title": "Edit"
+        },
+        "accountNamePlaceholder": {
+          "title": "Account Name"
+        },
+        "startingBalancePlaceholder": {
+          "title": "Starting Balance"
+        },
+        "institutePlaceholder": {
+          "title": "Institute"
+        },
+        "ownerPlaceholder": {
+          "title": "Owner"
+        }
+      }
+    },
+    "categories": {
+      "createMenu": {
+        "title": {
+          "title": "Create Category"
+        },
+        "categoryNamePlaceholder": {
+          "title": "Category Name"
+        }
+      },
+      "editMenu": {
+        "title": {
+          "title": "Edit"
+        },
+        "categoryNamePlaceholder": {
+          "title": "Category Name"
+        }
+      }
+    },
+    "institutes": {
+      "createMenu": {
+        "title": {
+          "title": "Create Institute"
+        },
+        "instituteNamePlaceholder": {
+          "title": "Institute Name"
+        }
+      },
+      "editMenu": {
+        "title": {
+          "title": "Edit"
+        },
+        "instituteNamePlaceholder": {
+          "title": "Institute Name"
+        }
+      }
+    },
+    "payees": {
+      "createMenu": {
+        "title": {
+          "title": "Create Payee"
+        },
+        "payeeNamePlaceholder": {
+          "title": "Payee Name"
+        }
+      },
+      "editMenu": {
+        "title": {
+          "title": "Edit"
+        },
+        "payeeNamePlaceholder": {
+          "title": "Payee Name"
+        }
+      }
+    }
+  },
+  "common": {
+    "save": {
+      "title": "Save"
+    },
+    "reset": {
+      "title": "Reset"
+    },
+    "close": {
+      "title": "Close"
+    }
+  }
 }

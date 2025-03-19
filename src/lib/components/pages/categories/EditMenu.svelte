@@ -6,6 +6,7 @@
     import InputField from "$lib/components/InputField.svelte";
     import type { EditCategoryDto, GetCategoryDto } from "$lib/types/api/Category";
     import { onMount } from "svelte";
+    import { _ } from "svelte-i18n";
 
     let { category, updateCategories, close }: { category: GetCategoryDto, updateCategories: any, close: any } = $props();
     
@@ -31,8 +32,8 @@
 </script>
 
 <div class="basis-1/5 card preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center flex flex-col space-y-5">
-    <CardTitle text="Edit"/>
-    <InputField bind:value={currentCategoryName} type="text" placeholder="Institute Name" optional={false}/>
+    <CardTitle text={$_("data.categories.editMenu.title.title")}/>
+    <InputField bind:value={currentCategoryName} type="text" placeholder={$_("data.categories.editMenu.categoryNamePlaceholder.title")} optional={false}/>
     <div class="flex flex-row space-x-5 w-full">
         <CloseButton close={close}/>
         <SaveButton save={onSaveButtonClicked}/>

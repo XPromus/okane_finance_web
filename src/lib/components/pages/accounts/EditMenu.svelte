@@ -8,6 +8,7 @@
     import type { GetInstituteDto } from "$lib/types/api/Institute";
     import type { GetOwnerDto } from "$lib/types/api/Owner";
     import { onMount } from "svelte";
+    import { _ } from "svelte-i18n";
 
     let { 
         account,
@@ -51,16 +52,16 @@
 </script>
 
 <div class="card preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-full p-4 text-center flex flex-col space-y-5 drop-shadow-sm">
-    <CardTitle text="Edit"/>
+    <CardTitle text={$_("data.accounts.editMenu.title.title")}/>
     <div class="flex flex-col space-y-1">
-        <InputField bind:value={accountName} type="text" placeholder="Account Name" optional={false}/>
-        <InputField bind:value={accountStartingBalance} type="number" placeholder="Starting Balance" optional={false}/>
-        <select bind:value={accountInstituteId} class="select">
+        <InputField bind:value={accountName} type="text" placeholder={$_("data.accounts.editMenu.accountNamePlaceholder.title")} optional={false}/>
+        <InputField bind:value={accountStartingBalance} type="number" placeholder={$_("data.accounts.editMenu.startingBalancePlaceholder.title")} optional={false}/>
+        <select bind:value={accountInstituteId} class="select" placeholder={$_("data.accounts.editMenu.institutePlaceholder.title")}>
             {#each institutes as institute }
                 <option value={institute.id}></option>
             {/each}
         </select>
-        <select bind:value={accountOwnerId} class="select">
+        <select bind:value={accountOwnerId} class="select" placeholder={$_("data.accounts.editMenu.ownerPlaceholder.title")}>
             {#each owners as owner }
                 <option value={owner.id}></option>
             {/each}

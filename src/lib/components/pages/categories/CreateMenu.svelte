@@ -5,6 +5,7 @@
     import CardTitle from "$lib/components/elements/CardTitle.svelte";
     import InputField from "$lib/components/InputField.svelte";
     import type { CreateCategoryDto } from "$lib/types/api/Category";
+    import { _ } from "svelte-i18n";
 
     let { updateCategories } = $props();
 
@@ -36,9 +37,9 @@
 </script>
 
 <div class="card preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-full p-4 text-center flex flex-col space-y-5 drop-shadow-sm">
-    <CardTitle text="Create Category"/>
+    <CardTitle text={$_("data.categories.createMenu.title.title")} />
     <div class="flex flex-col space-y-1">
-        <InputField bind:value={newCategoryName} type="text" placeholder="Category Name" optional={false}/>
+        <InputField bind:value={newCategoryName} type="text" placeholder={$_("data.categories.createMenu.categoryNamePlaceholder.title")} optional={false}/>
     </div>
     <div class="flex flex-row space-x-5">
         {#each newCategoryIconOptions as iconOption, i}

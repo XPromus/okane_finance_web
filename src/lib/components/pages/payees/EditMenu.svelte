@@ -6,6 +6,7 @@
     import InputField from "$lib/components/InputField.svelte";
     import type { EditPayeeDto, GetPayeeDto } from "$lib/types/api/Payee";
     import { onMount } from "svelte";
+    import { _ } from "svelte-i18n";
 
     let { 
         payee, 
@@ -36,8 +37,8 @@
 </script>
 
 <div class="basis-1/5 card preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center flex flex-col space-y-5">
-    <CardTitle text="Edit"/>
-    <InputField bind:value={currentPayeeName} type="text" placeholder="Institute Name" optional={false}/>
+    <CardTitle text={$_("data.payees.editMenu.title.title")}/>
+    <InputField bind:value={currentPayeeName} type="text" placeholder={$_("data.payees.editMenu.payeeNamePlaceholder.title")} optional={false}/>
     <div class="flex flex-row space-x-5 w-full">
         <CloseButton close={close}/>
         <SaveButton save={onSaveButtonClicked}/>
