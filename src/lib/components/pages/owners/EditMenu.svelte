@@ -1,9 +1,12 @@
 <script lang="ts">
     import { putUpdateOwner } from "$lib/api/OwnerAPI";
+    import CloseButton from "$lib/components/elements/buttons/CloseButton.svelte";
+    import SaveButton from "$lib/components/elements/buttons/SaveButton.svelte";
     import CardTitle from "$lib/components/elements/CardTitle.svelte";
     import InputField from "$lib/components/InputField.svelte";
     import type { EditOwnerDto, GetOwnerDto } from "$lib/types/api/Owner";
     import { onMount } from "svelte";
+    import { _ } from "svelte-i18n";
 
     let { owner, updateOwners, close }: { owner: GetOwnerDto, updateOwners: any, close: any } = $props();
 
@@ -32,12 +35,12 @@
 </script>
 
 <div class="basis-1/5 card preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center flex flex-col space-y-5">
-    <CardTitle text="Edit"/>
-    <InputField bind:value={currentOwnerFirstName} type="text" placeholder="First Name" optional={false}/>
-    <InputField bind:value={currentOwnerLastName} type="text" placeholder="Last Name" optional={false}/>
-    <InputField bind:value={currentOwnerDate} type="date" placeholder="Last Name" optional={true}/>
+    <CardTitle text={$_("data.owners.editMenu.title.title")}/>
+    <InputField bind:value={currentOwnerFirstName} type="text" placeholder={$_("data.owners.createMenu.firstNamePlaceholder.title")} optional={false}/>
+    <InputField bind:value={currentOwnerLastName} type="text" placeholder={$_("data.owners.createMenu.lastNamePlaceholder.title")} optional={false}/>
+    <InputField bind:value={currentOwnerDate} type="date" placeholder={$_("data.owners.createMenu.birthdayPlaceholder.title")} optional={true}/>
     <div class="flex flex-row space-x-5 w-full">
-        <button onclick={close} type="button" class="btn preset-tonal-surface grow">Close</button>
-        <button onclick={onSaveButtonClicked} type="button" class="btn preset-tonal-success grow">Save</button>
+        <CloseButton close={close}/>
+        <SaveButton save={onSaveButtonClicked}/>
     </div>
 </div>

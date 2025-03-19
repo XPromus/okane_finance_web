@@ -1,5 +1,6 @@
 <script lang="ts">
     import { Navigation } from "@skeletonlabs/skeleton-svelte";
+    import { _ } from "svelte-i18n";
     
     type TabData = {
 		url: string,
@@ -8,21 +9,21 @@
 	};
 
     const headerTabs: TabData[] = [
-        {url: "/", text: "Home", icon: "material-symbols:home-rounded"}
+        {url: "/", text: $_("navigation.home.title"), icon: "material-symbols:home-rounded"}
     ];
 
 	const tabData: TabData[] = [
-        {url: "/transactions", text: "Transactions", icon: "material-symbols:attach-money-rounded"},
-        {url: "/stocks", text: "Stocks", icon: "material-symbols:finance-mode-rounded"},
-        {url: "/data/owners", text: "Data", icon: "material-symbols:database-outline"}
+        {url: "/transactions", text: $_("navigation.transactions.title"), icon: "material-symbols:attach-money-rounded"},
+        {url: "/stocks", text: $_("navigation.stocks.title"), icon: "material-symbols:finance-mode-rounded"},
+        {url: "/data/owners", text: $_("navigation.data.title"), icon: "material-symbols:database-outline"}
 	];
 
     const footerTabs: TabData[] = [
-        {url: "/docs", text: "Docs", icon: "material-symbols:book-2-rounded"}
+        {url: "/docs", text: $_("navigation.docs.title"), icon: "material-symbols:book-2-rounded"}
     ]
 </script>
 
-<Navigation.Rail classes="bg-surface-200">
+<Navigation.Rail classes="preset-filled-surface-200-800">
     {#snippet header()}
         {#each headerTabs as tab}
             <Navigation.Tile label={tab.text} href={tab.url}>

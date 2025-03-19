@@ -1,7 +1,6 @@
 <script lang="ts">
     import { deleteAccount, getAllAccounts } from '$lib/api/AccountsAPI';
-    import { getAllInstitutes } from '$lib/api/InstitutesAPI';
-    import { getAllOwners } from '$lib/api/OwnerAPI';
+    import DataContainer from '$lib/components/elements/DataContainer.svelte';
     import CreateMenu from '$lib/components/pages/accounts/CreateMenu.svelte';
     import EditMenu from '$lib/components/pages/accounts/EditMenu.svelte';
     import ListEntry from '$lib/components/pages/accounts/ListEntry.svelte';
@@ -39,14 +38,16 @@
     }
 </script>
 
-<div class="w-full h-full flex flex-row p-2 space-x-5">
-    <div class="grow flex flex-col space-y-1">
+<DataContainer bind:showAddMenu bind:showEditMenu>
+    {#snippet addMenuButton()}
         <button onclick={() => {showAddMenu = !showAddMenu}} type="button" class="btn preset-filled-primary-500">
             Add Account
         </button>
-        {#if showAddMenu}
-            <CreateMenu institutes={institutes} owners={owners} update={updateAccounts} />
-        {/if}
+    {/snippet}
+    {#snippet addMenu()}
+        <CreateMenu institutes={institutes} owners={owners} update={updateAccounts} />
+    {/snippet}
+    {#snippet list()}
         {#each accounts as account}
             <div class="flex flex-row space-x-1">
                 <ListEntry {account} />
@@ -60,8 +61,10 @@
                 </button>
             </div>
         {/each}
-    </div>
-    {#if showEditMenu && selectedAccount !== undefined}
-        <EditMenu account={selectedAccount} institutes={institutes} owners={owners} update={updateAccounts} close={closeEditMenu}/>
-    {/if}
-</div>
+    {/snippet}
+    {#snippet editMenu()}
+        {#if selectedAccount !== undefined}
+            <EditMenu account={selectedAccount} institutes={institutes} owners={owners} update={updateAccounts} close={closeEditMenu}/>
+        {/if}
+    {/snippet}
+</DataContainer>

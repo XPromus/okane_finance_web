@@ -1,5 +1,7 @@
 <script lang="ts">
     import { postCreateAccount } from "$lib/api/AccountsAPI";
+    import ResetButton from "$lib/components/elements/buttons/ResetButton.svelte";
+    import SaveButton from "$lib/components/elements/buttons/SaveButton.svelte";
     import CardTitle from "$lib/components/elements/CardTitle.svelte";
     import InputField from "$lib/components/InputField.svelte";
     import type { CreateAccountDto } from "$lib/types/api/Account";
@@ -48,23 +50,21 @@
         <InputField bind:value={newAccountStartingBalance} type="number" placeholder="Starting Balance" optional={false}/>
         <select bind:value={newAccountInstituteId} class="select">
             {#each institutes as institute }
-                <option value={institute.id}></option>
+                <option value={institute.id}>
+                    {institute.instituteName}
+                </option>
             {/each}
         </select>
         <select bind:value={newAccountOwnerId} class="select">
             {#each owners as owner }
-                <option value={owner.id}></option>
+                <option value={owner.id}>
+                    {owner.firstName} {owner.lastName}
+                </option>
             {/each}
         </select>
     </div>
     <div class="flex flex-row space-x-5">
-        <button onclick={resetInputFields} type="button" class="btn preset-tonal-surface basis-1/2">
-            <iconify-icon icon="material-symbols:reset-settings-rounded" width="24" height="24"></iconify-icon>
-            <span>Reset</span>
-        </button>
-        <button onclick={onSaveButtonClicked} type="button" class="btn preset-tonal-success basis-1/2">
-            <iconify-icon icon="material-symbols:save-rounded" width="24" height="24"></iconify-icon>
-            <span>Save</span>
-        </button>
+        <ResetButton reset={resetInputFields} />
+        <SaveButton save={onSaveButtonClicked} />
     </div>
 </div>

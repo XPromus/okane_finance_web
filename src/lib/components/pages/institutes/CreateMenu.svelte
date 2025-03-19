@@ -1,5 +1,7 @@
 <script lang="ts">
     import { postCreateInstitute } from "$lib/api/InstitutesAPI";
+    import ResetButton from "$lib/components/elements/buttons/ResetButton.svelte";
+    import SaveButton from "$lib/components/elements/buttons/SaveButton.svelte";
     import CardTitle from "$lib/components/elements/CardTitle.svelte";
     import InputField from "$lib/components/InputField.svelte";
     import type { CreateInstituteDto } from "$lib/types/api/Institute";
@@ -28,13 +30,7 @@
         <InputField bind:value={newInstituteName} type="text" placeholder="Institute Name" optional={false}/>
     </div>
     <div class="flex flex-row space-x-5">
-        <button onclick={resetInputFields} type="button" class="btn preset-tonal-surface basis-1/2">
-            <iconify-icon icon="material-symbols:reset-settings-rounded" width="24" height="24"></iconify-icon>
-            <span>Reset</span>
-        </button>
-        <button onclick={onSaveButtonClicked} type="button" class="btn preset-tonal-success basis-1/2">
-            <iconify-icon icon="material-symbols:save-rounded" width="24" height="24"></iconify-icon>
-            <span>Save</span>
-        </button>
+        <ResetButton reset={resetInputFields} />
+        <SaveButton save={onSaveButtonClicked} />
     </div>
 </div>

@@ -10,7 +10,7 @@
 
 <ToastProvider />
 
-<div class="w-screen h-screen flex flex-row bg-surface-100">
+<div class="w-screen h-screen flex flex-row preset-filled-surface-100-900">
 	<NavigationBar />
 	<div class="grow">
 		{@render children()}

@@ -1,5 +1,7 @@
 <script lang="ts">
     import { putEditPayee } from "$lib/api/PayeeAPI";
+    import CloseButton from "$lib/components/elements/buttons/CloseButton.svelte";
+    import SaveButton from "$lib/components/elements/buttons/SaveButton.svelte";
     import CardTitle from "$lib/components/elements/CardTitle.svelte";
     import InputField from "$lib/components/InputField.svelte";
     import type { EditPayeeDto, GetPayeeDto } from "$lib/types/api/Payee";
@@ -37,7 +39,7 @@
     <CardTitle text="Edit"/>
     <InputField bind:value={currentPayeeName} type="text" placeholder="Institute Name" optional={false}/>
     <div class="flex flex-row space-x-5 w-full">
-        <button onclick={close} type="button" class="btn preset-tonal-surface grow">Close</button>
-        <button onclick={onSaveButtonClicked} type="button" class="btn preset-tonal-success grow">Save</button>
+        <CloseButton close={close}/>
+        <SaveButton save={onSaveButtonClicked}/>
     </div>
 </div>

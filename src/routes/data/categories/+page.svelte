@@ -1,10 +1,11 @@
 <script lang="ts">
     import { deleteCategory, getAllCategories } from "$lib/api/CategoriesAPI";
-    import CategoryListEntry from "$lib/components/pages/categories/ListEntry.svelte";
-    import CreateCategoryContainer from "$lib/components/pages/categories/CreateMenu.svelte";
-    import EditCategoryContainer from "$lib/components/pages/categories/EditMenu.svelte";
+    import ListEntry from "$lib/components/pages/categories/ListEntry.svelte";
+    import CreateMenu from "$lib/components/pages/categories/CreateMenu.svelte";
+    import EditMenu from "$lib/components/pages/categories/EditMenu.svelte";
     import type { GetCategoryDto } from "$lib/types/api/Category";
     import type { PageData } from "./$types";
+    import DataContainer from "$lib/components/elements/DataContainer.svelte";
 
     let { data }: { data: PageData } = $props();
     let categories: GetCategoryDto[] = $state(data.categories);
@@ -34,17 +35,19 @@
 
 </script>
 
-<div class="w-full h-full flex flex-row p-2 space-x-5">
-    <div class="grow flex flex-col space-y-1">
+<DataContainer bind:showAddMenu bind:showEditMenu>
+    {#snippet addMenuButton()}
         <button onclick={() => {showAddMenu = !showAddMenu}} type="button" class="btn preset-filled-primary-500">
             Add Category
         </button>
-        {#if showAddMenu}
-            <CreateCategoryContainer {updateCategories} />
-        {/if}
+    {/snippet}
+    {#snippet addMenu()}
+        <CreateMenu {updateCategories} />
+    {/snippet}
+    {#snippet list()}
         {#each categories as category}
             <div class="flex flex-row space-x-1">
-                <CategoryListEntry {category} />
+                <ListEntry {category} />
                 <!-- svelte-ignore a11y_consider_explicit_label -->
                 <button onclick={() => {onDeleteButtonClicked(category)}} class="btn-icon preset-filled-error-500">
                     <iconify-icon icon="material-symbols:delete-rounded" width="24" height="24"></iconify-icon>
@@ -55,8 +58,10 @@
                 </button>
             </div>
         {/each}
-    </div>
-    {#if showEditMenu && selectedCategory !== undefined}
-        <EditCategoryContainer category={selectedCategory} {updateCategories} close={closeEditMenu} />
-    {/if}
-</div>
+    {/snippet}
+    {#snippet editMenu()}
+        {#if selectedCategory !== undefined}
+            <EditMenu category={selectedCategory} {updateCategories} close={closeEditMenu} />
+        {/if}
+    {/snippet}
+</DataContainer>

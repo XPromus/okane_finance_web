@@ -1,0 +1,68 @@
+{
+    "navigation": {
+        "home": {
+            "title": "Home"
+        },
+        "transactions": {
+            "title": "Transactions"
+        },
+        "stocks": {
+            "title": "Stocks"
+        },
+        "data": {
+            "title": "Data"
+        },
+        "docs": {
+            "title": "Docs"
+        }
+    },
+    "data": {
+        "owners": {
+            "navigation": {
+                "title": "Owners"
+            },
+            "openCreateMenuButton": {
+                "title": "Add Owner"
+            },
+            "createMenu": {
+                "title": {
+                    "title": "Create Owner"
+                },
+                "firstNamePlaceholder": {
+                    "title": "First Name"
+                },
+                "lastNamePlaceholder": {
+                    "title": "Last Name"
+                },
+                "birthdayPlaceholder": {
+                    "title": "Birthday"
+                }
+            },
+            "editMenu": {
+                "title": {
+                    "title": "Edit"
+                },
+                "firstNamePlaceholder": {
+                    "title": "First Name"
+                },
+                "lastNamePlaceholder": {
+                    "title": "Last Name"
+                },
+                "birthdayPlaceholder": {
+                    "title": "Birthday"
+                }
+            }
+        }
+    },
+    "common": {
+        "save": {
+            "title": "Save"
+        },
+        "reset": {
+            "title": "Reset"
+        },
+        "close": {
+            "title": "Close"
+        }
+    }
+}

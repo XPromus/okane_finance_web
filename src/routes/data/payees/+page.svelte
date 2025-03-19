@@ -5,13 +5,13 @@
     import CreateMenu from "$lib/components/pages/payees/CreateMenu.svelte";
     import ListEntry from "$lib/components/pages/payees/ListEntry.svelte";
     import EditMenu from "$lib/components/pages/payees/EditMenu.svelte";
+    import DataContainer from '$lib/components/elements/DataContainer.svelte';
 
     let { data }: { data: PageData } = $props();
     let payees: GetPayeeDto[] = $state(data.payees)
     
     let selectedPayee: GetPayeeDto | undefined = $state(undefined);
     let showAddMenu: boolean = $state(false);
-    
     let showEditMenu: boolean = $state(false);
 
     const onDeleteButtonClicked = async (payee: GetPayeeDto) => {
@@ -34,14 +34,16 @@
     }
 </script>
 
-<div class="w-full h-full flex flex-row p-2 space-x-5">
-    <div class="grow flex flex-col space-y-1">
+<DataContainer bind:showAddMenu bind:showEditMenu>
+    {#snippet addMenuButton()}
         <button onclick={() => {showAddMenu = !showAddMenu}} type="button" class="btn preset-filled-primary-500">
             Add Payee
         </button>
-        {#if showAddMenu}
-            <CreateMenu update={updatePayees} />
-        {/if}
+    {/snippet}
+    {#snippet addMenu()}
+        <CreateMenu update={updatePayees} />
+    {/snippet}
+    {#snippet list()}
         {#each payees as payee}
             <div class="flex flex-row space-x-1">
                 <ListEntry {payee} />
@@ -55,8 +57,10 @@
                 </button>
             </div>
         {/each}
-    </div>
-    {#if showEditMenu && selectedPayee !== undefined}
-        <EditMenu payee={selectedPayee} update={updatePayees} close={closeEditMenu}/>
-    {/if}
-</div>
+    {/snippet}
+    {#snippet editMenu()}
+        {#if selectedPayee !== undefined}
+            <EditMenu payee={selectedPayee} update={updatePayees} close={closeEditMenu}/>
+        {/if}
+    {/snippet}
+</DataContainer>

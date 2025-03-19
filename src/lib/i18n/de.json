@@ -1,0 +1,68 @@
+{
+    "navigation": {
+        "home": {
+            "title": "Startseite"
+        },
+        "transactions": {
+            "title": "Transaktionen"
+        },
+        "stocks": {
+            "title": "Anlagen"
+        },
+        "data": {
+            "title": "Daten"
+        },
+        "docs": {
+            "title": "Dokumentation"
+        }
+    },
+    "data": {
+        "owners": {
+            "navigation": {
+                "title": "Benutzer"
+            },
+            "openCreateMenuButton": {
+                "title": "Benutzer Hinzufügen"
+            },
+            "createMenu": {
+                "title": {
+                    "title": "Erstelle Benutzer"
+                },
+                "firstNamePlaceholder": {
+                    "title": "Vorname"
+                },
+                "lastNamePlaceholder": {
+                    "title": "Nachname"
+                },
+                "birthdayPlaceholder": {
+                    "title": "Geburtstag"
+                }
+            },
+            "editMenu": {
+                "title": {
+                    "title": "Bearbeiten"
+                },
+                "firstNamePlaceholder": {
+                    "title": "Vorname"
+                },
+                "lastNamePlaceholder": {
+                    "title": "Nachname"
+                },
+                "birthdayPlaceholder": {
+                    "title": "Geburtstag"
+                }
+            }
+        }
+    },
+    "common": {
+        "save": {
+            "title": "Speichern"
+        },
+        "reset": {
+            "title": "Zurücksetzen"
+        },
+        "close": {
+            "title": "Schließen"
+        }
+    }
+}

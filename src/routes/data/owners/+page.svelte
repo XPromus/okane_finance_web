@@ -5,6 +5,7 @@
     import CreateMenu from "$lib/components/pages/owners/CreateMenu.svelte";
     import ListEntry from "$lib/components/pages/owners/ListEntry.svelte";
     import EditMenu from "$lib/components/pages/owners/EditMenu.svelte";
+    import DataContainer from "$lib/components/elements/DataContainer.svelte";
 
     let { data }: { data: PageData } = $props();
     let owners: GetOwnerDto[] = $state(data.owners)
@@ -34,14 +35,16 @@
     }
 </script>
 
-<div class="w-full h-full flex flex-row p-2 space-x-5">
-    <div class="grow flex flex-col space-y-1">
+<DataContainer bind:showAddMenu={showOwnerAdd} bind:showEditMenu={showOwnerEdit}>
+    {#snippet addMenuButton()}
         <button onclick={() => {showOwnerAdd = !showOwnerAdd}} type="button" class="btn preset-filled-primary-500">
             Add Owner
         </button>
-        {#if showOwnerAdd}
-            <CreateMenu {updateOwners} />
-        {/if}
+    {/snippet}
+    {#snippet addMenu()}
+        <CreateMenu {updateOwners} />
+    {/snippet}
+    {#snippet list()}
         {#each owners as owner}
             <div class="flex flex-row space-x-1">
                 <ListEntry {owner} />
@@ -55,8 +58,10 @@
                 </button>
             </div>
         {/each}
-    </div>
-    {#if showOwnerEdit && selectedOwner !== undefined}
-        <EditMenu owner={selectedOwner} {updateOwners} close={closeOwnerEdit}/>
-    {/if}
-</div>
+    {/snippet}
+    {#snippet editMenu()}
+        {#if selectedOwner !== undefined}
+            <EditMenu owner={selectedOwner} {updateOwners} close={closeOwnerEdit}/>
+        {/if}
+    {/snippet}
+</DataContainer>
