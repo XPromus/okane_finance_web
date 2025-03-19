@@ -4,6 +4,6 @@
     let { owner }: { owner: GetOwnerDto } = $props();
 </script>   
 
-<div class="w-full h-fit py-1 card">
+<div class="card preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-full p-1 drop-shadow-sm">
     {owner.firstName} {owner.lastName}
 </div>

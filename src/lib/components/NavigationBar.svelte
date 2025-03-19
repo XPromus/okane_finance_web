@@ -1,11 +1,6 @@
 <script lang="ts">
-    import { goto } from "$app/navigation";
-    import { page } from "$app/state";
-    import Icon from "@iconify/svelte";
-    import { onMount } from "svelte";
-
-    let activeTab = $state(0);
-
+    import { Navigation } from "@skeletonlabs/skeleton-svelte";
+    
     type TabData = {
 		url: string,
 		text: string,
@@ -21,54 +16,26 @@
         {url: "/transactions", text: "Transactions", icon: "material-symbols:attach-money-rounded"},
         {url: "/categories", text: "Categories", icon: "material-symbols:category-rounded"},
         {url: "/stocks", text: "Stocks", icon: "material-symbols:finance-mode-rounded"},
-        {url: "/docs", text: "Documentation", icon: "material-symbols:book-2-rounded"}
 	];
 
-    const getTopLevelPath = (path: string): string => {
-		const splitPath = path.split("/")
-		return splitPath[1]
-	}
-
-    const onTabButtonClicked = (url: string, index: number) => {
-        goto(url);
-        activeTab = index;
-    }
-
-    onMount(() => {
-        const path = getTopLevelPath(page.url.pathname);
-        for (let i = 0; i < tabData.length; i++) {
-            const element = tabData[i];
-            if (getTopLevelPath(element.url) === path) {
-                activeTab = i;
-                break;
-            }
-        }        
-    })
+    const footerTabs: TabData[] = [
+        {url: "/docs", text: "Docs", icon: "material-symbols:book-2-rounded"}
+    ]
 </script>
 
-<div class="flex flex-col bg-surface-100 space-y-2 p-2">
-    {#each tabData as tab, i }
-        {#if i == tabData.length - 1}
-            <div class="grow"></div>
-            {#if i == activeTab}
-                <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg preset-tonal-primary">
-                    <Icon icon="material-symbols:book-2-rounded" width="24" height="24" />
-                </button>
-            {:else}
-                <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg preset-tonal-surface hover:preset-tonal-surface border border-surface-500">
-                    <Icon icon="material-symbols:book-2-rounded" width="24" height="24" />
-                </button>
-            {/if}
-        {:else}
-            {#if i == activeTab}
-                <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg preset-tonal-primary">
-                    <Icon icon={tab.icon} width="24" height="24" />
-                </button>
-            {:else}
-                <button onclick={() => { onTabButtonClicked(tab.url, i) }} class="p-2 rounded-lg preset-tonal-surface hover:preset-tonal-surface border border-surface-500">
-                    <Icon icon={tab.icon} width="24" height="24" />
-                </button>
-            {/if}
-        {/if}
-    {/each}
-</div>
+<Navigation.Rail classes="bg-surface-200">
+    {#snippet tiles()}
+        {#each tabData as tab}
+            <Navigation.Tile label={tab.text} href={tab.url}>
+                <iconify-icon icon={tab.icon} width="32" height="32"></iconify-icon>
+            </Navigation.Tile>
+        {/each}
+    {/snippet}
+    {#snippet footer()}
+        {#each footerTabs as tab}
+            <Navigation.Tile label={tab.text} href={tab.url}>
+                <iconify-icon icon={tab.icon} width="32" height="32"></iconify-icon>
+            </Navigation.Tile>
+        {/each}
+    {/snippet}
+</Navigation.Rail>
