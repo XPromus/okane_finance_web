@@ -6,25 +6,41 @@
     import { setContext } from "svelte";
     import type { PageData } from './$types';
     import type { GetOwnerDto } from "$lib/types/api/Owner";
+    import CreateOwnerContainer from "$lib/components/pages/owners/CreateOwnerContainer.svelte";
+    import OwnerListEntry from "$lib/components/pages/owners/OwnerListEntry.svelte";
 
     let { data }: { data: PageData } = $props();
     let owners: GetOwnerDto[] = $state(data.owners)
     
+    let showOwnerAdd: boolean = $state(false);
+    let showOwnerEdit: boolean = $state(false);
+
     const updateOwners = async () => {
         owners = await getAllOwners()
     }
 </script>
 
-<div class="w-full h-full flex flex-row space-x-5">
-    <div class="card basis-1/2">
-        <OwnerOverviewPage owners={owners} />
+<div class="w-full h-full flex flex-row">
+    <div class="grow flex flex-col space-y-5">
+        <button onclick={() => {showOwnerAdd = !showOwnerAdd}} class="bg-slate-500 p-1">
+            Add User
+        </button>
+        {#if showOwnerAdd}
+            <CreateOwnerContainer {updateOwners} />
+        {/if}
+        {#each owners as owner}
+            <div class="flex flex-row space-x-1">
+                <OwnerListEntry {owner} />
+                <button onclick={() => {showOwnerEdit = !showOwnerEdit}} class="p-1">
+                    Edit
+                </button>
+            </div>
+            
+        {/each}
     </div>
-    <div class="basis-1/2 flex flex-col space-y-5">
-        <div class="card basis-1/2">
-            <OwnerAddPage {updateOwners} />
+    {#if showOwnerEdit}
+        <div class="basis-1/5 h-full bg-slate-200">
+            Edit
         </div>
-        <div class="card basis-1/2">
-            <OwnerEditPage owners={owners} {updateOwners} />
-        </div>
-    </div>
+    {/if}
 </div>

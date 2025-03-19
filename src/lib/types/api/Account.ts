@@ -38,6 +38,7 @@ export type GetAccountDto = {
     startingBalance: number,
     instituteID: string,
     transactionIDs: string[],
+    stockOrderIDs: string[],
     ownerID: string
 }
 

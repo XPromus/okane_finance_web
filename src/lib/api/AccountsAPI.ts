@@ -1,6 +1,8 @@
 import { baseURL } from "$lib/config/consts"
 import type { Account, AccountDto, CreateAccountDto, EditAccountDto, GetAccountDto } from "$lib/types/api/Account"
 
+const apiBasePath: string = "/accounts";
+
 export const getAllAccounts = async (): Promise<GetAccountDto[]> => {
     const url = baseURL + "/accounts"
 	const response = await fetch(url, {

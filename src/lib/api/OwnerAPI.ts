@@ -1,6 +1,8 @@
 import { baseURL } from "$lib/config/consts"
 import type { CreateOwnerDto, EditOwnerDto, GetOwnerDto, Owner } from "$lib/types/api/Owner"
 
+const apiBasePath: string = "/owners";
+
 export const getAllOwners = async (): Promise<GetOwnerDto[]> => {
     const url = baseURL + "/owners"
 	const response = await fetch(url, {

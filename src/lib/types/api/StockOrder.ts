@@ -4,6 +4,7 @@ export type StockOrder = {
     id: string,
     isin: string,
     wkn: string,
+    tickerSymbol: string,
     stockName: string,
     numberOfStocks: number,
     buyInPrice: number,
@@ -15,6 +16,7 @@ export type StockOrder = {
 export type StockOrderDto = {
     isin: string,
     wkn: string,
+    tickerSymbol: string,
     stockName: string,
     numberOfStocks: number,
     buyInPrice: number,
@@ -26,6 +28,7 @@ export type StockOrderDto = {
 export type CreateStockOrderDto = {
     isin: string,
     wkn: string,
+    tickerSymbol: string,
     stockName: string,
     numberOfStocks: number,
     buyInPrice: number,
@@ -37,6 +40,7 @@ export type CreateStockOrderDto = {
 export type EditStockOrderDto = {
     isin: string | undefined,
     wkn: string | undefined,
+    tickerSymbol: string | undefined,
     stockName: string | undefined,
     numberOfStocks: number | undefined,
     buyInPrice: number | undefined,
@@ -49,6 +53,7 @@ export type GetStockOrderDto = {
     id: string,
     isin: string,
     wkn: string,
+    tickerSymbol: string,
     stockName: string,
     numberOfStocks: number,
     buyInPrice: number,
