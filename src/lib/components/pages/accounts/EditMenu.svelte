@@ -2,6 +2,7 @@
     import { putUpdateAccount } from "$lib/api/AccountsAPI";
     import CloseButton from "$lib/components/elements/buttons/CloseButton.svelte";
     import SaveButton from "$lib/components/elements/buttons/SaveButton.svelte";
+    import Card from "$lib/components/elements/Card.svelte";
     import CardTitle from "$lib/components/elements/CardTitle.svelte";
     import InputField from "$lib/components/InputField.svelte";
     import type { EditAccountDto, GetAccountDto } from "$lib/types/api/Account";
@@ -51,24 +52,30 @@
     })
 </script>
 
-<div class="card preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-full p-4 text-center flex flex-col space-y-5 drop-shadow-sm">
-    <CardTitle text={$_("data.accounts.editMenu.title.title")}/>
-    <div class="flex flex-col space-y-1">
-        <InputField bind:value={accountName} type="text" placeholder={$_("data.accounts.editMenu.accountNamePlaceholder.title")} optional={false}/>
-        <InputField bind:value={accountStartingBalance} type="number" placeholder={$_("data.accounts.editMenu.startingBalancePlaceholder.title")} optional={false}/>
-        <select bind:value={accountInstituteId} class="select" placeholder={$_("data.accounts.editMenu.institutePlaceholder.title")}>
-            {#each institutes as institute }
-                <option value={institute.id}></option>
-            {/each}
-        </select>
-        <select bind:value={accountOwnerId} class="select" placeholder={$_("data.accounts.editMenu.ownerPlaceholder.title")}>
-            {#each owners as owner }
-                <option value={owner.id}></option>
-            {/each}
-        </select>
-    </div>
-    <div class="flex flex-row space-x-5 w-full">
-        <CloseButton close={close}/>
-        <SaveButton save={onSaveButtonClicked}/>
-    </div>
-</div>
+<Card classes="basis-1/5">
+    {#snippet title()}
+        <CardTitle text={$_("data.accounts.editMenu.title.title")}/>
+    {/snippet}
+    {#snippet content()}
+        <div class="flex flex-col space-y-1">
+            <InputField bind:value={accountName} type="text" placeholder={$_("data.accounts.editMenu.accountNamePlaceholder.title")} optional={false}/>
+            <InputField bind:value={accountStartingBalance} type="number" placeholder={$_("data.accounts.editMenu.startingBalancePlaceholder.title")} optional={false}/>
+            <select bind:value={accountInstituteId} class="select" placeholder={$_("data.accounts.editMenu.institutePlaceholder.title")}>
+                {#each institutes as institute }
+                    <option value={institute.id}></option>
+                {/each}
+            </select>
+            <select bind:value={accountOwnerId} class="select" placeholder={$_("data.accounts.editMenu.ownerPlaceholder.title")}>
+                {#each owners as owner }
+                    <option value={owner.id}></option>
+                {/each}
+            </select>
+        </div>
+    {/snippet}
+    {#snippet footer()}
+        <div class="flex flex-row space-x-5 w-full">
+            <CloseButton close={close}/>
+            <SaveButton save={onSaveButtonClicked}/>
+        </div>
+    {/snippet}
+</Card>
