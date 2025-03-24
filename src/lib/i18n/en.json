@@ -179,7 +179,7 @@
           "placeholder": "Finished Date"
         },
         "amount": {
-          "label": "Starting Amount",
+          "label": "Amount",
           "placeholder": "0€"
         },
         "account": {
@@ -196,7 +196,15 @@
         }
       },
       "overview": {
-        "title": "Overview"
+        "title": "Overview",
+        "table": {
+          "headers": {
+            "name": "Name",
+            "payee": "Payee",
+            "account": "Account",
+            "amount": "Amount"
+          }
+        }
       }
     }
   },
