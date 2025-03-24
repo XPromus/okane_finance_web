@@ -44,7 +44,13 @@
     {#snippet content()}
         <div class="flex flex-col space-y-5">
             <div class="flex flex-col space-y-1">
-                <InputField bind:value={newCategoryName} type="text" placeholder={$_("data.categories.createMenu.categoryNamePlaceholder.title")} optional={false}/>
+                <InputField 
+                    label={$_("data.categories.createMenu.categoryNamePlaceholder.title")}
+                    bind:value={newCategoryName} 
+                    type="text" 
+                    placeholder={$_("data.categories.createMenu.categoryNamePlaceholder.title")} 
+                    optional={false}
+                />
             </div>
             <div class="flex flex-row space-x-5">
                 {#each newCategoryIconOptions as iconOption, i}

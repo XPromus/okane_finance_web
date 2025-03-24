@@ -34,7 +34,13 @@
         <CardTitle text={$_("data.institutes.editMenu.title.title")}/>
     {/snippet}
     {#snippet content()}
-        <InputField bind:value={currentInstituteName} type="text" placeholder={$_("data.institutes.editMenu.instituteNamePlaceholder.title")} optional={false}/>
+        <InputField 
+            label={$_("data.institutes.editMenu.instituteNamePlaceholder.title")}
+            bind:value={currentInstituteName} 
+            type="text" 
+            placeholder={$_("data.institutes.editMenu.instituteNamePlaceholder.title")} 
+            optional={false}
+        />
     {/snippet}
     {#snippet footer()}
         <div class="flex flex-row space-x-5 w-full">

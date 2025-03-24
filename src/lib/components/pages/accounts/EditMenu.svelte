@@ -5,6 +5,8 @@
     import Card from "$lib/components/elements/Card.svelte";
     import CardTitle from "$lib/components/elements/CardTitle.svelte";
     import InputField from "$lib/components/InputField.svelte";
+    import SelectField from "$lib/components/SelectField.svelte";
+    import { mapInstituteToSelectFieldData, mapOwnerToSelectFieldData } from "$lib/model/selectFieldMapper";
     import type { EditAccountDto, GetAccountDto } from "$lib/types/api/Account";
     import type { GetInstituteDto } from "$lib/types/api/Institute";
     import type { GetOwnerDto } from "$lib/types/api/Owner";
@@ -58,18 +60,34 @@
     {/snippet}
     {#snippet content()}
         <div class="flex flex-col space-y-1">
-            <InputField bind:value={accountName} type="text" placeholder={$_("data.accounts.editMenu.accountNamePlaceholder.title")} optional={false}/>
-            <InputField bind:value={accountStartingBalance} type="number" placeholder={$_("data.accounts.editMenu.startingBalancePlaceholder.title")} optional={false}/>
-            <select bind:value={accountInstituteId} class="select" placeholder={$_("data.accounts.editMenu.institutePlaceholder.title")}>
-                {#each institutes as institute }
-                    <option value={institute.id}></option>
-                {/each}
-            </select>
-            <select bind:value={accountOwnerId} class="select" placeholder={$_("data.accounts.editMenu.ownerPlaceholder.title")}>
-                {#each owners as owner }
-                    <option value={owner.id}></option>
-                {/each}
-            </select>
+            <InputField
+                label={$_("data.accounts.editMenu.accountNamePlaceholder.title")} 
+                bind:value={accountName} 
+                type="text" 
+                placeholder={$_("data.accounts.editMenu.accountNamePlaceholder.title")} 
+                optional={false}
+            />
+            <InputField 
+                label={$_("data.accounts.editMenu.startingBalancePlaceholder.title")}
+                bind:value={accountStartingBalance} 
+                type="number" 
+                placeholder={$_("data.accounts.editMenu.startingBalancePlaceholder.title")} 
+                optional={false}
+            />
+            <SelectField 
+                bind:selected={accountInstituteId}
+                label={$_("data.accounts.editMenu.institutePlaceholder.title")}
+                data={mapInstituteToSelectFieldData(institutes)}
+                placeholder={$_("data.accounts.editMenu.institutePlaceholder.title")}
+                optional={false}
+            />
+            <SelectField 
+                bind:selected={accountOwnerId}
+                label={$_("data.accounts.editMenu.ownerPlaceholder.title")}
+                data={mapOwnerToSelectFieldData(owners)}
+                placeholder={$_("data.accounts.editMenu.ownerPlaceholder.title")}
+                optional={false}
+            />
         </div>
     {/snippet}
     {#snippet footer()}

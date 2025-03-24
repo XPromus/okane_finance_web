@@ -75,6 +75,21 @@
         },
         "ownerPlaceholder": {
           "title": "Owner"
+        },
+        "label": {
+          "title": "Account Name"
+        },
+        "accountNameLabel": {
+          "title": "Account Name"
+        },
+        "startingBalanceLabel": {
+          "title": "Starting Balance"
+        },
+        "accountInstituteLabel": {
+          "title": "Institute"
+        },
+        "accountOwnerLabel": {
+          "title": "Owner"
         }
       },
       "editMenu": {

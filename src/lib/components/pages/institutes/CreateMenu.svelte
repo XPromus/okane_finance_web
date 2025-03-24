@@ -32,7 +32,13 @@
     {/snippet}
     {#snippet content()}
         <div class="flex flex-col space-y-1">
-            <InputField bind:value={newInstituteName} type="text" placeholder={$_("data.institutes.createMenu.instituteNamePlaceholder.title")} optional={false}/>
+            <InputField
+                label={$_("data.institutes.createMenu.instituteNamePlaceholder.title")} 
+                bind:value={newInstituteName} 
+                type="text" 
+                placeholder={$_("data.institutes.createMenu.instituteNamePlaceholder.title")} 
+                optional={false}
+            />
         </div>
     {/snippet}
     {#snippet footer()}

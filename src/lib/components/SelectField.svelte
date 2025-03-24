@@ -1,4 +1,6 @@
 <script lang="ts">
+    import type { SelectFieldData } from "$lib/types/components/selectField";
+
     let {
         selected = $bindable(),
         data,
@@ -7,10 +9,7 @@
         optional
     }: {
         selected: any,
-        data: { 
-            name: string, 
-            value: string 
-        }[],
+        data: SelectFieldData[],
         label: string,
         placeholder: string,
         optional: boolean
@@ -31,4 +30,3 @@
         {/each}
     </select>
 </div>
-

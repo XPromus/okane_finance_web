@@ -5,6 +5,8 @@
     import Card from "$lib/components/elements/Card.svelte";
     import CardTitle from "$lib/components/elements/CardTitle.svelte";
     import InputField from "$lib/components/InputField.svelte";
+    import SelectField from "$lib/components/SelectField.svelte";
+    import { mapInstituteToSelectFieldData, mapOwnerToSelectFieldData } from "$lib/model/selectFieldMapper";
     import type { CreateAccountDto } from "$lib/types/api/Account";
     import type { GetInstituteDto } from "$lib/types/api/Institute";
     import type { GetOwnerDto } from "$lib/types/api/Owner";
@@ -51,22 +53,34 @@
     {/snippet}
     {#snippet content()}
         <div class="flex flex-col space-y-1">
-            <InputField bind:value={newAccountName} type="text" placeholder={$_("data.accounts.createMenu.accountNamePlaceholder.title")} optional={false}/>
-            <InputField bind:value={newAccountStartingBalance} type="number" placeholder={$_("data.accounts.createMenu.startingBalancePlaceholder.title")} optional={false}/>
-            <select bind:value={newAccountInstituteId} class="select" placeholder={$_("data.accounts.createMenu.institutePlaceholder.title")}>
-                {#each institutes as institute }
-                    <option value={institute.id}>
-                        {institute.instituteName}
-                    </option>
-                {/each}
-            </select>
-            <select bind:value={newAccountOwnerId} class="select" placeholder={$_("data.accounts.createMenu.ownerPlaceholder.title")}>
-                {#each owners as owner }
-                    <option value={owner.id}>
-                        {owner.firstName} {owner.lastName}
-                    </option>
-                {/each}
-            </select>
+            <InputField 
+                label={$_("data.accounts.createMenu.accountNameLabel.title")} 
+                bind:value={newAccountName} 
+                type="text" 
+                placeholder={$_("data.accounts.createMenu.accountNamePlaceholder.title")} 
+                optional={false}
+            />
+            <InputField 
+                label={$_("data.accounts.createMenu.startingBalanceLabel.title")} 
+                bind:value={newAccountStartingBalance} 
+                type="number" 
+                placeholder={$_("data.accounts.createMenu.startingBalancePlaceholder.title")} 
+                optional={false}
+            />
+            <SelectField 
+                bind:selected={newAccountInstituteId}
+                label={$_("data.accounts.createMenu.accountInstituteLabel.title")} 
+                data={mapInstituteToSelectFieldData(institutes)} 
+                placeholder={$_("data.accounts.createMenu.institutePlaceholder.title")}
+                optional={false}
+            />
+            <SelectField 
+                bind:selected={newAccountOwnerId}
+                label={$_("data.accounts.createMenu.accountOwnerLabel.title")} 
+                data={mapOwnerToSelectFieldData(owners)} 
+                placeholder={$_("data.accounts.createMenu.ownerPlaceholder.title")}
+                optional={false}
+            />
         </div>
     {/snippet}
     {#snippet footer()}

@@ -3,7 +3,6 @@
     import CardTitle from "$lib/components/elements/CardTitle.svelte";
     import InputField from "$lib/components/InputField.svelte";
     import SelectField from "$lib/components/SelectField.svelte";
-    import type { GetAccountDto } from "$lib/types/api/Account";
     import type { PageData } from "./$types";
 
     let { data }: { data: PageData } = $props();
@@ -38,10 +37,10 @@
         {/snippet}
         {#snippet content()}
             <div class="flex flex-col space-y-5">
-                <InputField bind:value={newTransactionName} type="text" placeholder="New Transaction Name" optional={false} />
-                <InputField bind:value={newDoneDate} type="date" placeholder="New Done Date" optional={false} />
-                <InputField bind:value={newFinishedDate} type="date" placeholder="New Finished Name" optional={true} />
-                <InputField bind:value={newAmount} type="number" placeholder="New Amount" optional={false} />
+                <InputField label="" bind:value={newTransactionName} type="text" placeholder="New Transaction Name" optional={false} />
+                <InputField label="" bind:value={newDoneDate} type="date" placeholder="New Done Date" optional={false} />
+                <InputField label="" bind:value={newFinishedDate} type="date" placeholder="New Finished Name" optional={true} />
+                <InputField label="" bind:value={newAmount} type="number" placeholder="New Amount" optional={false} />
                 <SelectField 
                     bind:selected={newAccountID} 
                     data={accountsToSelectData()} 

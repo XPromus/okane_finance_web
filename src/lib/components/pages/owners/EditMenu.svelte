@@ -41,9 +41,27 @@
     {/snippet}
     {#snippet content()}
         <div class="flex flex-col space-y-1">
-            <InputField bind:value={currentOwnerFirstName} type="text" placeholder={$_("data.owners.createMenu.firstNamePlaceholder.title")} optional={false}/>
-            <InputField bind:value={currentOwnerLastName} type="text" placeholder={$_("data.owners.createMenu.lastNamePlaceholder.title")} optional={false}/>
-            <InputField bind:value={currentOwnerDate} type="date" placeholder={$_("data.owners.createMenu.birthdayPlaceholder.title")} optional={true}/>
+            <InputField
+                label={$_("data.owners.createMenu.firstNamePlaceholder.title")} 
+                bind:value={currentOwnerFirstName} 
+                type="text" 
+                placeholder={$_("data.owners.createMenu.firstNamePlaceholder.title")} 
+                optional={false}
+            />
+            <InputField
+                label={$_("data.owners.createMenu.lastNamePlaceholder.title")} 
+                bind:value={currentOwnerLastName} 
+                type="text" 
+                placeholder={$_("data.owners.createMenu.lastNamePlaceholder.title")} 
+                optional={false}
+            />
+            <InputField
+                label={$_("data.owners.createMenu.birthdayPlaceholder.title")} 
+                bind:value={currentOwnerDate} 
+                type="date" 
+                placeholder={$_("data.owners.createMenu.birthdayPlaceholder.title")} 
+                optional={true}
+            />
         </div>
     {/snippet}
     {#snippet footer()}
