@@ -16,8 +16,8 @@
     } = $props();
 </script>
 
-<div class="flex flex-col space-y-2">
-    <span>{label}</span>
+<div class="flex flex-col space-y-2 text-left">
+    <span class="font-bold">{label}</span>
     <select 
         bind:value={selected} 
         class="input" 

@@ -16,11 +16,11 @@ export const getAllAccounts = async (): Promise<GetAccountDto[]> => {
 }
 
 export const getAccounts = async (
-    id: string | undefined,
-    accountName: string | undefined,
-    startingBalance: number | undefined,
-    instituteID: string | undefined,
-    ownerID: string | undefined,
+    id?: string,
+    accountName?: string,
+    startingBalance?: number,
+    instituteID?: string,
+    ownerID?: string,
 ): Promise<GetAccountDto[]> => {
     const params: Record<string, string | number | undefined> = {
         id: id,

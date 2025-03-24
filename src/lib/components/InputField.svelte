@@ -15,6 +15,6 @@
 </script>
 
 <div class="flex flex-col space-y-2 text-left">
-    <span>{label}</span>
+    <span class="font-bold">{label}</span>
     <input class="input" bind:value={value} type={type} placeholder={placeholder}>
 </div>

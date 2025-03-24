@@ -4,7 +4,7 @@
     let { save }: { save: any } = $props();
 </script>
 
-<button onclick={save} type="button" class="btn preset-filled-success-200-800 basis-1/2">
+<button onclick={save} type="button" class="btn preset-filled-success-200-800 w-full">
     <iconify-icon icon="material-symbols:save-rounded" width="24" height="24"></iconify-icon>
     <span>{$_("common.save.title")}</span>
 </button>

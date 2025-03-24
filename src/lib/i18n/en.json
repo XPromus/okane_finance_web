@@ -163,6 +163,41 @@
           "title": "Payee Name"
         }
       }
+    },
+    "transactions": {
+      "create": {
+        "transactionName": {
+          "label": "Name",
+          "placeholder": "Name"
+        },
+        "doneDate": {
+          "label": "Done Date",
+          "placeholder": "Done Date"
+        },
+        "finishedDate": {
+          "label": "Finished Date",
+          "placeholder": "Finished Date"
+        },
+        "amount": {
+          "label": "Starting Amount",
+          "placeholder": "0€"
+        },
+        "account": {
+          "label": "Account",
+          "placeholder": "Account"
+        },
+        "payee": {
+          "label": "Payee",
+          "placeholder": "Payee"
+        },
+        "category": {
+          "label": "Category",
+          "placeholder": "Category"
+        }
+      },
+      "overview": {
+        "title": "Overview"
+      }
     }
   },
   "common": {
