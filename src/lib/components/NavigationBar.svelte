@@ -14,6 +14,7 @@
 
 	const tabData: TabData[] = [
         {url: "/transactions", text: $_("navigation.transactions.title"), icon: "material-symbols:attach-money-rounded"},
+        {url: "/subscriptions", text: $_("navigation.subscriptions.title"), icon: "material-symbols:time-auto-rounded"},
         {url: "/stocks", text: $_("navigation.stocks.title"), icon: "material-symbols:finance-mode-rounded"},
         {url: "/data/owners", text: $_("navigation.data.title"), icon: "material-symbols:database-outline"}
 	];
