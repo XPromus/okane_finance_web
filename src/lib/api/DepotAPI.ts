@@ -1,38 +1,44 @@
 import { baseURL } from "$lib/config/consts";
 import type { CreateDepotDto, EditDepotDto, GetDepotDto } from "$lib/types/api/Depot";
 import { deleteRequest, getRequest, postRequest, putRequest } from "./generic/GenericAPI";
+import { getURLSearchParams } from "./generic/SearchParamsCreator";
 
 const apiBasePath: string = "/depot";
+const apiURL: string = `${baseURL}${apiBasePath}`;
 
 export const getAllDepots = async (): Promise<GetDepotDto[]> => {
-    const url = `${baseURL}${apiBasePath}`;
-    return await getRequest<GetDepotDto[]>(url, undefined);
+    return await getRequest<GetDepotDto[]>(
+        apiURL,
+        undefined
+    );
 }
 
 export const getDepots = async (
-    id: string | undefined,
-    depotName: string | undefined,
-    instituteID: string | undefined,
-    ownerID: string | undefined,
-    taxExemptionEntryID: string | undefined
+    id?: string,
+    depotName?: string,
+    instituteID?: string,
+    ownerID?: string,
+    taxExemptionEntryID?: string
 ): Promise<GetDepotDto[]> => {
-    const url = `${baseURL}${apiBasePath}`;
-    const record: Record<string, string | undefined> = {
-        id: id,
-        depotName: depotName,
-        instituteID: instituteID,
-        ownerID: ownerID,
-        taxExemptionEntryID: taxExemptionEntryID
-    };
-    return await getRequest<GetDepotDto[]>(url, record);
+    const params: URLSearchParams = getURLSearchParams([
+        ["id", id],
+        ["depotName", depotName],
+        ["instituteID", instituteID],
+        ["ownerID", ownerID],
+        ["taxExemptionEntryID", taxExemptionEntryID]
+    ]);
+
+    return await getRequest<GetDepotDto[]>(
+        apiURL,
+        params
+    )
 }
 
 export const postCreateDepot = async (
     createDepotDto: CreateDepotDto
 ): Promise<GetDepotDto> => {
-    const url = `${baseURL}${apiBasePath}`;
     return await postRequest<CreateDepotDto, GetDepotDto>(
-        url,
+        apiURL,
         createDepotDto
     );
 }
@@ -41,7 +47,7 @@ export const putEditDepot = async (
     id: string,
     editDepotDto: EditDepotDto
 ): Promise<GetDepotDto> => {
-    const url = `${baseURL}${apiBasePath}/${id}`;
+    const url = `${apiURL}/${id}`;
     return await putRequest<EditDepotDto, GetDepotDto>(
         url,
         editDepotDto
@@ -51,6 +57,6 @@ export const putEditDepot = async (
 export const deleteDepot = async (
     id: string
 ): Promise<boolean> => {
-    const url = `${baseURL}${apiBasePath}/${id}`;
+    const url = `${apiURL}/${id}`;
     return await deleteRequest(url);
 }

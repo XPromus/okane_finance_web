@@ -1,75 +1,60 @@
 import { baseURL } from "$lib/config/consts"
 import type { CreateOwnerDto, EditOwnerDto, GetOwnerDto, Owner } from "$lib/types/api/Owner"
+import { getRequest, postRequest, putRequest } from "./generic/GenericAPI";
+import { getURLSearchParams } from "./generic/SearchParamsCreator";
 
 const apiBasePath: string = "/owners";
+const apiURL: string = `${baseURL}${apiBasePath}`;
 
 export const getAllOwners = async (): Promise<GetOwnerDto[]> => {
-    const url = baseURL + "/owners"
-	const response = await fetch(url, {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json"
-		}
-	})
-	const owners: GetOwnerDto[]= await response.json()
-	return owners
+    return await getRequest<GetOwnerDto[]>(
+        apiURL,
+        undefined
+    );
 }
 
 export const getOwners = async (
-    id: string | undefined,
-    firstName: string | undefined,
-    lastName: string | undefined,
-    birthday: Date | undefined,
+    id?: string,
+    firstName?: string,
+    lastName?: string,
+    birthday?: Date,
 ): Promise<GetOwnerDto[]> => {
-    const params: Record<string, string | Date | undefined> = {
-        id: id,
-        firstName: firstName,
-        lastName: lastName,
-        birthday: birthday
-    }
+    const params: URLSearchParams = getURLSearchParams([
+        ["id", id],
+        ["firstName", firstName],
+        ["lastName", lastName],
+        ["birthday", birthday]
+    ]);
 
-    const url = baseURL + "/owners" + "?" + params.toString()
-	const response = await fetch(url, {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json"
-		},
-        
-	})
-	const owners: GetOwnerDto[] = await response.json()
-	return owners
+    return await getRequest<GetOwnerDto[]>(
+        apiURL,
+        params
+    );
 }
 
-export const postCreateOwner = async (ownerDto: CreateOwnerDto): Promise<GetOwnerDto> => {
-    const response = await fetch(baseURL + "/owners", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(ownerDto)
-    });
-
-    const responseData: GetOwnerDto = await response.json()
-    return responseData;
+export const postCreateOwner = async (
+    createOwnerDto: CreateOwnerDto
+): Promise<GetOwnerDto> => {
+    return await postRequest<CreateOwnerDto, GetOwnerDto>(
+        apiURL,
+        createOwnerDto
+    );
 }
 
-export const putUpdateOwner = async (ownerDto: EditOwnerDto, id: string): Promise<GetOwnerDto> => {
-    const response = await fetch(baseURL + "/owners/" + id, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(ownerDto)
-    });
-
-    const responseData: GetOwnerDto = await response.json()
-    return responseData;
+export const putUpdateOwner = async (
+    id: string,
+    editOwnerDto: EditOwnerDto
+): Promise<GetOwnerDto> => {
+    const url = `${apiURL}/${id}`;
+    return await putRequest<EditOwnerDto, GetOwnerDto>(
+        url,
+        editOwnerDto
+    );
 }
 
-export const deleteOwner = async (id: string): Promise<boolean> => {
-    const response = await fetch(baseURL + "/owners/" + id, {
-        method: "DELETE",
-    });
-
-    return response.ok
+export const deleteOwner = async (
+    id: string
+): Promise<boolean> => {
+    const url = `${apiURL}/${id}`;
+    return await deleteOwner(url);
 }

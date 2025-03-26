@@ -1,38 +1,44 @@
 import { baseURL } from "$lib/config/consts";
 import type { CreateTransactionDto, EditTransactionDto, GetTransactionDto } from "$lib/types/api/Transaction";
 import { deleteRequest, getRequest, postRequest, putRequest } from "./generic/GenericAPI";
+import { getURLSearchParams } from "./generic/SearchParamsCreator";
 
 const apiBasePath: string = "/transactions";
+const apiURL: string = `${baseURL}${apiBasePath}`;
 
 export const getAllTransactions = async (): Promise<GetTransactionDto[]> => {
-    const url = `${baseURL}${apiBasePath}`;
-    return await getRequest<GetTransactionDto[]>(url, undefined);
+    return await getRequest<GetTransactionDto[]>(
+        apiURL, 
+        undefined
+    ); 
 }
 
 export const getTransactions = async (
-    id: string | undefined,
-    transactionName: string | undefined,
-    doneDate: Date | undefined,
-    finishedDate: Date | undefined,
-    amount: number | undefined
+    id?: string,
+    transactionName?: string,
+    doneDate?: Date,
+    finishedDate?: Date,
+    amount?: number
 ): Promise<GetTransactionDto[]> => {
-    const url = `${baseURL}${apiBasePath}`;
-    const record: Record<string, string | Date | number | undefined> = {
-        id: id,
-        transactionName: transactionName,
-        doneDate: doneDate,
-        finishedDate: finishedDate,
-        amount: amount
-    };
-    return await getRequest<GetTransactionDto[]>(url, record);
+    const params: URLSearchParams = getURLSearchParams([
+        ["id", id],
+        ["transactionName", transactionName],
+        ["doneDate", doneDate],
+        ["finishedDate", finishedDate],
+        ["amount", amount]
+    ]);
+
+    return await getRequest<GetTransactionDto[]>(
+        apiURL,
+        params
+    );
 }
 
 export const postCreateTransaction = async (
     createTransactionDto: CreateTransactionDto
 ): Promise<GetTransactionDto> => {
-    const url = `${baseURL}${apiBasePath}`;
     return await postRequest<CreateTransactionDto, GetTransactionDto>(
-        url,
+        apiURL,
         createTransactionDto
     );
 }
@@ -41,7 +47,7 @@ export const putEditTransaction = async (
     id: string,
     editTransactionDto: EditTransactionDto
 ): Promise<GetTransactionDto> => {
-    const url = `${baseURL}${apiBasePath}/${id}`;
+    const url = `${apiURL}/${id}`;
     return await putRequest<EditTransactionDto, GetTransactionDto>(
         url,
         editTransactionDto
@@ -51,6 +57,6 @@ export const putEditTransaction = async (
 export const deleteTransaction = async (
     id: string
 ): Promise<boolean> => {
-    const url = `${baseURL}${apiBasePath}/${id}`;
+    const url = `${apiURL}/${id}`;
     return await deleteRequest(url);
 }

@@ -3,8 +3,11 @@ import type { GetTaxExemptionMaximumDto } from "$lib/types/api/TaxExemptionMaxim
 import { getRequest } from "./generic/GenericAPI";
 
 const apiBasePath: string = "/tax-exemption/maximum";
+const apiURL: string = `${baseURL}${apiBasePath}`;
 
 export const getTaxExemptionMaximumStatus = async (): Promise<GetTaxExemptionMaximumDto> => {
-    const url = `${baseURL}${apiBasePath}`;
-    return await getRequest<GetTaxExemptionMaximumDto>(url, undefined);
+    return await getRequest<GetTaxExemptionMaximumDto>(
+        apiURL, 
+        undefined
+    );
 }

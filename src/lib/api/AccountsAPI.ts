@@ -1,18 +1,16 @@
 import { baseURL } from "$lib/config/consts"
-import type { Account, AccountDto, CreateAccountDto, EditAccountDto, GetAccountDto } from "$lib/types/api/Account"
+import type { CreateAccountDto, EditAccountDto, GetAccountDto } from "$lib/types/api/Account"
+import { deleteRequest, getRequest, postRequest, putRequest } from "./generic/GenericAPI";
+import { getURLSearchParams } from "./generic/SearchParamsCreator";
 
 const apiBasePath: string = "/accounts";
+const apiURL: string = `${baseURL}${apiBasePath}`;
 
 export const getAllAccounts = async (): Promise<GetAccountDto[]> => {
-    const url = baseURL + "/accounts"
-	const response = await fetch(url, {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json"
-		}
-	})
-	const accounts: GetAccountDto[] = await response.json()
-	return accounts
+    return await getRequest<GetAccountDto[]>(
+        apiURL, 
+        undefined
+    );
 }
 
 export const getAccounts = async (
@@ -22,56 +20,43 @@ export const getAccounts = async (
     instituteID?: string,
     ownerID?: string,
 ): Promise<GetAccountDto[]> => {
-    const params: Record<string, string | number | undefined> = {
-        id: id,
-        accountName: accountName,
-        startingBalance: startingBalance,
-        instituteID: instituteID,
-        ownerID: ownerID
-    }
+    const params: URLSearchParams = getURLSearchParams([
+        ["id", id],
+        ["accountName", accountName],
+        ["startingBalance", startingBalance],
+        ["instituteID", instituteID],
+        ["ownerID", ownerID]    
+    ]);
 
-    const url = baseURL + "/accounts" + "?" + params.toString()
-	const response = await fetch(url, {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json"
-		},
-        
-	})
-	const owners: GetAccountDto[] = await response.json()
-	return owners
+	return await getRequest<GetAccountDto[]>(
+        apiURL, 
+        params
+    );
 }
 
-export const postCreateAccount = async (accountDto: CreateAccountDto): Promise<GetAccountDto> => {
-    const response = await fetch(baseURL + "/accounts", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(accountDto)
-    });
-
-    const responseData: GetAccountDto = await response.json()
-    return responseData;
+export const postCreateAccount = async (
+    createAccountDto: CreateAccountDto
+): Promise<GetAccountDto> => {
+    return await postRequest<CreateAccountDto, GetAccountDto>(
+        apiURL,
+        createAccountDto
+    );
 }
 
-export const putUpdateAccount = async (id: string, accountDto: EditAccountDto): Promise<GetAccountDto> => {
-    const response = await fetch(baseURL + "/accounts/" + id, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(accountDto)
-    });
-
-    const responseData: GetAccountDto = await response.json()
-    return responseData;
+export const putUpdateAccount = async (
+    id: string, 
+    editAccountDto: EditAccountDto
+): Promise<GetAccountDto> => {
+    const url = `${apiURL}/${id}`;
+    return await putRequest<EditAccountDto, GetAccountDto>(
+        url,
+        editAccountDto
+    );
 }
 
-export const deleteAccount = async (id: string): Promise<boolean> => {
-    const response = await fetch(baseURL + "/accounts/" + id, {
-        method: "DELETE",
-    });
-
-    return response.ok
+export const deleteAccount = async (
+    id: string
+): Promise<boolean> => {
+    const url = `${apiURL}/${id}`;
+    return await deleteRequest(url);
 }

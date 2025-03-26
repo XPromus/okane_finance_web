@@ -6,14 +6,18 @@
     import SelectField from "$lib/components/SelectField.svelte";
     import type { PageData } from "./$types";
     import { _ } from "svelte-i18n";
-    import { postCreateTransaction } from "$lib/api/TransactionAPI";
+    import { getAllTransactions, postCreateTransaction } from "$lib/api/TransactionAPI";
     import type { CreateTransactionDto } from "$lib/types/api/Transaction";
-    import { getTransactionListEntryData, type TransactionListEntryType } from "$lib/middleware/transactionMiddleware";
+    import { getTransactionListEntryData, getTransactionListEntryDataSortedByDate, sortTransactionsIntoDateGroupsByDoneDate, type TransactionListEntryByDate, type TransactionListEntryType } from "$lib/middleware/transactionMiddleware";
     import { Switch } from "@skeletonlabs/skeleton-svelte";
     import type { GetAccountDto } from "$lib/types/api/Account";
+    import { onMount } from "svelte";
 
     let { data }: { data: PageData } = $props();
-    let transactionListEntries: Promise<TransactionListEntryType[]> = $derived(getTransactionListEntryData(data.transactions));
+    let sortedTransactions = $derived(sortTransactionsIntoDateGroupsByDoneDate(data.transactions));
+    let transactionListEntries: Promise<TransactionListEntryByDate[]> = $derived(
+        getTransactionListEntryDataSortedByDate(sortedTransactions)
+    );
 
     let newTransactionName: string = $state("");
     let newDoneDate: Date = $state(new Date());
@@ -84,8 +88,12 @@
         }
 
         await postCreateTransaction(newTransaction);
+        await updateTransactions();
     }
 
+    const updateTransactions = async () => {
+        data.transactions = await getAllTransactions();
+    }
 </script>
 
 <div class="w-full h-full flex flex-row space-x-5 p-5">
@@ -147,7 +155,9 @@
             </div>
         {/snippet}
         {#snippet footer()}
-            <SaveButton save={onTransactionSaveButtonClicked()} />
+            <div class="flex flex-row">
+                <SaveButton save={onTransactionSaveButtonClicked()} />
+            </div>
         {/snippet}
     </Card>
     <Card classes="basis-4/5">
@@ -210,7 +220,7 @@
                 <div class="grow">
                     {#await transactionListEntries}
                         <span>Loading</span>
-                    {:then transactions} 
+                    {:then transactionCollections} 
                         <div class="w-full h-full table-wrap">
                             <table class="table">
                                 <thead>
@@ -230,13 +240,21 @@
                                     </tr>
                                 </thead>
                                 <tbody class="[&>tr]:hover:preset-tonal-primary overflow-y-auto">
-                                    {#each transactions as transaction}
+                                    {#each transactionCollections as transactionCollection}
                                         <tr>
-                                            <td>{transaction.name}</td>
-                                            <td>{transaction.payee}</td>
-                                            <td>{transaction.account}</td>
-                                            <td class="text-right">{transaction.amount}</td>
+                                            <td>{transactionCollection.date.toDateString()}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
+                                        {#each transactionCollection.transactionListEntries as transaction}
+                                            <tr>
+                                                <td>{transaction.name}</td>
+                                                <td>{transaction.payee}</td>
+                                                <td>{transaction.account}</td>
+                                                <td class="text-right">{transaction.amount}</td>
+                                            </tr>
+                                        {/each}
                                     {/each}
                                 </tbody>
                             </table>

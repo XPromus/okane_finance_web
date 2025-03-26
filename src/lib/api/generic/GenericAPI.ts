@@ -1,8 +1,9 @@
 export const getRequest = async <ResponseType>(
     url: string, 
-    params: Record<string, any> | undefined
+    searchParams: URLSearchParams | undefined
 ): Promise<ResponseType> => {
-    const requestURL: string = (params !== undefined) ? (url + "?" + params.toString()) : url;
+    const searchParamsString: string = (searchParams) ? searchParams.toString() : "";
+    const requestURL: string = `${url}?${searchParamsString}`;
     const response = await fetch(
         requestURL, 
         {

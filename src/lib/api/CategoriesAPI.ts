@@ -1,32 +1,38 @@
 import { baseURL } from "$lib/config/consts";
 import type { CreateCategoryDto, EditCategoryDto, GetCategoryDto } from "$lib/types/api/Category";
 import { deleteRequest, getRequest, postRequest, putRequest } from "./generic/GenericAPI";
+import { getURLSearchParams } from "./generic/SearchParamsCreator";
 
 const apiBasePath: string = "/categories";
+const apiURL: string = `${baseURL}${apiBasePath}`;
 
 export const getAllCategories = async (): Promise<GetCategoryDto[]> => {
-    const url = `${baseURL}${apiBasePath}`;
-    return await getRequest<GetCategoryDto[]>(url, undefined);
+    return await getRequest<GetCategoryDto[]>(
+        apiURL, 
+        undefined
+    );
 }
 
 export const getCategories = async (
-    id: string | undefined,
-    categoryName: string | undefined
+    id?: string,
+    categoryName?: string
 ): Promise<GetCategoryDto[]> => {
-    const url = `${baseURL}${apiBasePath}`;
-    const record: Record<string, string | undefined> = {
-        id: id,
-        categoryName: categoryName
-    };
-    return await getRequest<GetCategoryDto[]>(url, record);
+    const params: URLSearchParams = getURLSearchParams([
+        ["id", id],
+        ["categoryName", categoryName]
+    ]);
+
+    return await getRequest<GetCategoryDto[]>(
+        apiURL,
+        params
+    );
 }
 
 export const postCreateCategory = async (
     createCategoryDto: CreateCategoryDto
 ): Promise<GetCategoryDto> => {
-    const url = `${baseURL}${apiBasePath}`;
     return await postRequest<CreateCategoryDto, GetCategoryDto>(
-        url, 
+        apiURL,
         createCategoryDto
     );
 }
@@ -35,7 +41,7 @@ export const putEditCategory = async (
     id: string,
     editCategoryDto: EditCategoryDto
 ): Promise<GetCategoryDto> => {
-    const url = `${baseURL}${apiBasePath}/${id}`;
+    const url = `${apiURL}/${id}`;
     return await putRequest<EditCategoryDto, GetCategoryDto>(
         url,
         editCategoryDto
@@ -45,6 +51,6 @@ export const putEditCategory = async (
 export const deleteCategory = async (
     id: string
 ): Promise<boolean> => {
-    const url = `${baseURL}${apiBasePath}/${id}`;
+    const url = `${apiURL}/${id}`;
     return await deleteRequest(url);
 }

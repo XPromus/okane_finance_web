@@ -1,79 +1,59 @@
 import { baseURL } from "$lib/config/consts"
 import type { EditAccountDto } from "$lib/types/api/Account"
-import type { CreateBudgetDto, GetBudgetDto } from "$lib/types/api/Budget"
+import type { CreateBudgetDto, EditBudgetDto, GetBudgetDto } from "$lib/types/api/Budget"
+import { deleteRequest, getRequest, postRequest, putRequest } from "./generic/GenericAPI";
+import { getURLSearchParams } from "./generic/SearchParamsCreator";
 
-const controllerURL = "/budgets"
+const apiBasePath = "/budgets";
+const apiURL: string = `${baseURL}/${apiBasePath}`;
 
 export const getAllBudgets = async (): Promise<GetBudgetDto[]> => {
-    const url = baseURL + controllerURL
-	const response = await fetch(url, {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json"
-		}
-	})
-	const owners: GetBudgetDto[] = await response.json()
-	return owners
+	return await getRequest<GetBudgetDto[]>(
+        apiURL, 
+        undefined
+    );
 }
 
 export const getBudgets = async (
-    id: string | undefined,
-    budgetName: string | undefined,
-    maxValue: number | undefined,
+    id?: string,
+    budgetName?: string,
+    maxValue?: number,
 ): Promise<GetBudgetDto[]> => {
-    const params: Record<string, string | number | undefined> = {
-        id: id,
-        budgetName: budgetName,
-        maxValue: maxValue,
-    }
+    const params: URLSearchParams = getURLSearchParams([
+        ["id", id],
+        ["budgetName", budgetName],
+        ["maxValue", maxValue]
+    ]);
 
-    const url = baseURL + controllerURL + "?" + params.toString()
-	const response = await fetch(url, {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json"
-		},
-        
-	})
-	const owners: GetBudgetDto[] = await response.json()
-	return owners
+	return await getRequest<GetBudgetDto[]>(
+        apiURL, 
+        params
+    );
 }
 
 export const postCreateBudget = async (
-    budgetDto: CreateBudgetDto
+    createBudgetDto: CreateBudgetDto
 ): Promise<GetBudgetDto> => {
-    const response = await fetch(baseURL + controllerURL, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(budgetDto)
-    });
-
-    const responseData: GetBudgetDto = await response.json()
-    return responseData;
+    return await postRequest<CreateBudgetDto, GetBudgetDto>(
+        apiURL,
+        createBudgetDto
+    );
 }
 
 export const putUpdateBudget = async (
     id: string,
-    budgetDto: EditAccountDto
+    editBudgetDto: EditBudgetDto
 ): Promise<GetBudgetDto> => {
-    const response = await fetch(baseURL + controllerURL + "/" + id, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(budgetDto)
-    });
-
-    const responseData: GetBudgetDto = await response.json()
-    return responseData;
+    const url = `${apiURL}/${id}`;
+    return await putRequest<EditBudgetDto, GetBudgetDto>(
+        url,
+        editBudgetDto
+    )
 }
 
-export const deleteBudget = async (id: string): Promise<boolean> => {
-    const response = await fetch(baseURL + controllerURL + "/" + id, {
-        method: "DELETE",
-    });
-
-    return response.ok
+export const deleteBudget = async (
+    id: string
+): Promise<boolean> => {
+    const url = `${apiURL}/${id}`;
+    return await deleteRequest(url);
 }
