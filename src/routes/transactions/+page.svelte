@@ -8,7 +8,7 @@
     import { _ } from "svelte-i18n";
     import { getAllTransactions, postCreateTransaction } from "$lib/api/TransactionAPI";
     import type { CreateTransactionDto } from "$lib/types/api/Transaction";
-    import { getTransactionListEntryDataSortedByDate, sortTransactionsIntoDateGroupsByDoneDate, type TransactionListEntryByDate, type TransactionListEntryType } from "$lib/middleware/transactionMiddleware";
+    import { getTransactionListEntryDataSortedByDate, sortTransactionsIntoDateGroupsByDoneDate, type TransactionListEntryByDate, type TransactionListEntryType } from "$lib/middleware/TransactionMiddleware";
     import { Switch } from "@skeletonlabs/skeleton-svelte";
     import type { GetAccountDto } from "$lib/types/api/Account";
     
@@ -244,7 +244,7 @@
                                 <tbody class="[&>tr]:hover:preset-filled-surface-200-800 overflow-y-auto">
                                     {#each transactionCollections as transactionCollection}
                                         <tr>
-                                            <td>{new Date(transactionCollection.date).toDateString()}</td>
+                                            <td>{transactionCollection.date.toDateString()}</td>
                                             <td></td>
                                             <td></td>
                                             <td></td>

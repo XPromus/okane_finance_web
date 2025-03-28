@@ -1,6 +1,4 @@
-import type {Depot} from "$lib/types/api/Depot";
-
-export type StockOrder = {
+export type StockOrderDto = {
     id: string,
     isin: string,
     wkn: string,
@@ -10,19 +8,7 @@ export type StockOrder = {
     buyInPrice: number,
     fees: number,
     tradeDate: Date,
-    targetDepot: Depot
-}
-
-export type StockOrderDto = {
-    isin: string,
-    wkn: string,
-    tickerSymbol: string,
-    stockName: string,
-    numberOfStocks: number,
-    buyInPrice: number,
-    fees: number,
-    tradeDate: Date,
-    targetDepotId: string
+    targetDepotID: string
 }
 
 export type CreateStockOrderDto = {
@@ -38,15 +24,15 @@ export type CreateStockOrderDto = {
 }
 
 export type EditStockOrderDto = {
-    isin: string | undefined,
-    wkn: string | undefined,
-    tickerSymbol: string | undefined,
-    stockName: string | undefined,
-    numberOfStocks: number | undefined,
-    buyInPrice: number | undefined,
-    fees: number | undefined,
-    tradeDate: Date | undefined,
-    targetDepotID: string | undefined
+    isin?: string,
+    wkn?: string,
+    tickerSymbol?: string,
+    stockName?: string,
+    numberOfStocks?: number,
+    buyInPrice?: number,
+    fees?: number,
+    tradeDate?: Date,
+    targetDepotID?: string
 }
 
 export type GetStockOrderDto = {
@@ -58,6 +44,6 @@ export type GetStockOrderDto = {
     numberOfStocks: number,
     buyInPrice: number,
     fees: number,
-    tradeDate: Date,
+    tradeDate: string,
     targetDepotID: string
 }

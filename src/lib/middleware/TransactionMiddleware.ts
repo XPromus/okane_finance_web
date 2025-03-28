@@ -1,6 +1,7 @@
 import { getAccounts } from "$lib/api/AccountsAPI";
 import { getPayees } from "$lib/api/PayeeAPI";
-import type { GetTransactionDto } from "$lib/types/api/Transaction";
+import type { GetTransactionDto, TransactionDto } from "$lib/types/api/Transaction";
+import { mapGetTransactionDtoToTransactionDto } from "./mapper/TransactionMapper";
 
 export type TransactionListEntryType = {
     name: string,
@@ -11,7 +12,7 @@ export type TransactionListEntryType = {
 
 export type TransactionsByDate = {
     date: Date,
-    transactions: GetTransactionDto[]
+    transactions: TransactionDto[]
 }
 
 export type TransactionListEntryByDate = {
@@ -68,7 +69,11 @@ export const getTransactionListEntryDataSortedByDate = async (
 export const sortTransactionsIntoDateGroupsByDoneDate = (
     toSort: GetTransactionDto[]
 ): TransactionsByDate[] => {
-    const sortedTransactions = sortTransactionsByDoneDate(toSort);
+    const transactionsMapped = toSort.map((element) => {
+        return mapGetTransactionDtoToTransactionDto(element);
+    })
+
+    const sortedTransactions = sortTransactionsByDoneDate(transactionsMapped);
     const returnList: TransactionsByDate[] = [];
     sortedTransactions.forEach((transaction) => {
         if (returnList.length === 0) {
@@ -93,8 +98,8 @@ export const sortTransactionsIntoDateGroupsByDoneDate = (
 }
 
 const sortTransactionsByDoneDate = (
-    toSort: GetTransactionDto[]
-): GetTransactionDto[] => {
+    toSort: TransactionDto[]
+): TransactionDto[] => {
     toSort.sort((a, b) => {
         const keyA = new Date(a.doneDate);
         const keyB = new Date(b.doneDate);
