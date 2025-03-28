@@ -8,11 +8,10 @@
     import { _ } from "svelte-i18n";
     import { getAllTransactions, postCreateTransaction } from "$lib/api/TransactionAPI";
     import type { CreateTransactionDto } from "$lib/types/api/Transaction";
-    import { getTransactionListEntryData, getTransactionListEntryDataSortedByDate, sortTransactionsIntoDateGroupsByDoneDate, type TransactionListEntryByDate, type TransactionListEntryType } from "$lib/middleware/transactionMiddleware";
+    import { getTransactionListEntryDataSortedByDate, sortTransactionsIntoDateGroupsByDoneDate, type TransactionListEntryByDate, type TransactionListEntryType } from "$lib/middleware/transactionMiddleware";
     import { Switch } from "@skeletonlabs/skeleton-svelte";
     import type { GetAccountDto } from "$lib/types/api/Account";
-    import { onMount } from "svelte";
-
+    
     let { data }: { data: PageData } = $props();
     let sortedTransactions = $derived(sortTransactionsIntoDateGroupsByDoneDate(data.transactions));
     let transactionListEntries: Promise<TransactionListEntryByDate[]> = $derived(
@@ -156,7 +155,7 @@
         {/snippet}
         {#snippet footer()}
             <div class="flex flex-row">
-                <SaveButton save={onTransactionSaveButtonClicked()} />
+                <SaveButton save={onTransactionSaveButtonClicked} />
             </div>
         {/snippet}
     </Card>
@@ -237,27 +236,48 @@
                                         <th class="!text-right">
                                             {$_("data.transactions.overview.table.headers.amount")}
                                         </th>
+                                        <th class="!text-right">
+                                            {$_("data.transactions.overview.table.headers.functions")}
+                                        </th>
                                     </tr>
                                 </thead>
-                                <tbody class="[&>tr]:hover:preset-tonal-primary overflow-y-auto">
+                                <tbody class="[&>tr]:hover:preset-filled-surface-200-800 overflow-y-auto">
                                     {#each transactionCollections as transactionCollection}
                                         <tr>
-                                            <td>{transactionCollection.date.toDateString()}</td>
+                                            <td>{new Date(transactionCollection.date).toDateString()}</td>
+                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
                                         </tr>
                                         {#each transactionCollection.transactionListEntries as transaction}
                                             <tr>
-                                                <td>{transaction.name}</td>
-                                                <td>{transaction.payee}</td>
-                                                <td>{transaction.account}</td>
-                                                <td class="text-right">{transaction.amount}</td>
+                                                <td class="text-left">{transaction.name}</td>
+                                                <td class="text-left">{transaction.payee}</td>
+                                                <td class="text-left">{transaction.account}</td>
+                                                <td class="text-right">
+                                                    {transaction.amount}
+                                                </td>
+                                                <td class="flex flex-row-reverse">
+                                                    <!-- svelte-ignore a11y_consider_explicit_label -->
+                                                    <button class="btn-icon hover:preset-filled-error-200-800">
+                                                        <iconify-icon icon="material-symbols:variable-remove-rounded" width="24" height="24"></iconify-icon>
+                                                    </button>
+                                                    <!-- svelte-ignore a11y_consider_explicit_label -->
+                                                    <button class="btn-icon hover:preset-filled-primary-200-800">
+                                                        <iconify-icon icon="material-symbols:edit-rounded" width="24" height="24"></iconify-icon>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         {/each}
                                     {/each}
                                 </tbody>
                             </table>
+                        </div>
+                    {:catch error}
+                        <div class="flex flex-col space-y-5">
+                            <span>Error</span>
+                            {error}
                         </div>
                     {/await}
                 </div>

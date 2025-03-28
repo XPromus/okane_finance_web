@@ -205,7 +205,8 @@
             "name": "Name",
             "payee": "Payee",
             "account": "Account",
-            "amount": "Amount"
+            "amount": "Amount",
+            "functions": "Edit"
           }
         }
       }

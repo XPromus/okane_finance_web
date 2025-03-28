@@ -15,7 +15,7 @@ export type TransactionsByDate = {
 }
 
 export type TransactionListEntryByDate = {
-    date: Date
+    date: Date,
     transactionListEntries: TransactionListEntryType[]
 }
 

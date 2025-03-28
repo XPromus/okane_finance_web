@@ -23,8 +23,8 @@ export const getTransactions = async (
     const params: URLSearchParams = getURLSearchParams([
         ["id", id],
         ["transactionName", transactionName],
-        ["doneDate", doneDate],
-        ["finishedDate", finishedDate],
+        ["doneDate", doneDate?.toDateString()],
+        ["finishedDate", finishedDate?.toDateString()],
         ["amount", amount]
     ]);
 
